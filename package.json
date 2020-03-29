@@ -1,0 +1,22 @@
+{
+  "name": "pokeapi-openapi",
+  "version": "2.0.0",
+  "description": "OpenAPI document for PokeAPI",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vanhoofmaarten/pokeapi-openapi.git"
+  },
+  "keywords": [
+    "OpenAPI"
+  ],
+  "author": "vanhoofmaarten",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vanhoofmaarten/pokeapi-openapi/issues"
+  },
+  "homepage": "https://github.com/vanhoofmaarten/pokeapi-openapi#readme"
+}
