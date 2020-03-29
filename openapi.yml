@@ -5091,6 +5091,7 @@ components:
           - name
 
     Ability:
+      type: object
       properties:
         id:
           type: integer
@@ -5253,6 +5254,7 @@ components:
           - name
 
     Berry:
+      type: object
       properties:
         id:
           type: integer
@@ -5346,6 +5348,7 @@ components:
           - name
 
     BerryFirmness:
+      type: object
       properties:
         id:
           type: integer
@@ -5392,6 +5395,7 @@ components:
         - name
 
     PokemonListResult:
+      type: object
       properties:
         results:
           $ref: "#/components/schemas/PokemonList"
@@ -5399,17 +5403,21 @@ components:
     PokemonList:
       type: array
       items:
-        properties:
-          name:
-            type: string
-            maxLength: 100
-          url:
-            type: string
-            readOnly: true
-        required:
-          - name
+        $ref: "#/components/schemas/PokemonListItem"
+
+    PokemonListItem:
+      properties:
+        name:
+          type: string
+          maxLength: 100
+        url:
+          type: string
+          readOnly: true
+      required:
+        - name
 
     Pokemon:
+      type: object
       properties:
         id:
           type: integer
