@@ -24,7 +24,10 @@ paths:
               schema:
                 allOf:
                   - $ref: "#/components/schemas/NamedAPIResourceList"
-                  - $ref: "#/components/schemas/AbilityList"
+                  - type: object
+                    properties:
+                      results:
+                        $ref: "#/components/schemas/AbilityList"
 
   /api/v2/ability/{id}/:
     get:
@@ -5342,20 +5345,17 @@ components:
           nullable: true
 
     AbilityList:
-      type: object
-      properties:
-        results:
-          type: array
-          items:
-            properties:
-              name:
-                type: string
-                maxLength: 100
-              url:
-                type: string
-                readOnly: true
-            required:
-              - name
+      type: array
+      items:
+        properties:
+          name:
+            type: string
+            maxLength: 100
+          url:
+            type: string
+            readOnly: true
+        required:
+          - name
 
     Ability:
       properties:
