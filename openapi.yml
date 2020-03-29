@@ -54,6 +54,7 @@ paths:
         - $ref: "#/components/parameters/limitParam"
       responses:
         "200":
+          description: ""
           content:
             application/json:
               schema:
@@ -62,18 +63,7 @@ paths:
                   - type: object
                     properties:
                       results:
-                        type: array
-                        items:
-                          properties:
-                            name:
-                              type: string
-                              maxLength: 100
-                            url:
-                              type: string
-                              readOnly: true
-                          required:
-                            - name
-          description: ""
+                        $ref: "#/components/schemas/BerryList"
 
   /api/v2/berry/{id}/:
     get:
@@ -5516,3 +5506,15 @@ components:
         - name
         - generation
 
+    BerryList:
+      type: array
+      items:
+        properties:
+          name:
+            type: string
+            maxLength: 100
+          url:
+            type: string
+            readOnly: true
+        required:
+          - name
