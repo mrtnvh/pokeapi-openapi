@@ -39,157 +39,11 @@ paths:
             type: string
       responses:
         "200":
+          description: ""
           content:
             application/json:
               schema:
-                properties:
-                  id:
-                    type: integer
-                    readOnly: true
-                  name:
-                    type: string
-                    maxLength: 100
-                  is_main_series:
-                    type: boolean
-                  generation:
-                    properties:
-                      name:
-                        type: string
-                        maxLength: 100
-                      url:
-                        type: string
-                        readOnly: true
-                    required:
-                      - name
-                    type: object
-                  names:
-                    type: array
-                    items:
-                      properties:
-                        name:
-                          type: string
-                          maxLength: 100
-                        language:
-                          properties:
-                            name:
-                              type: string
-                              maxLength: 100
-                            url:
-                              type: string
-                              readOnly: true
-                          required:
-                            - name
-                          type: object
-                      required:
-                        - name
-                        - language
-                    readOnly: true
-                  effect_entries:
-                    type: array
-                    items:
-                      properties:
-                        effect:
-                          type: string
-                          maxLength: 6000
-                        short_effect:
-                          type: string
-                          maxLength: 300
-                        language:
-                          properties:
-                            name:
-                              type: string
-                              maxLength: 100
-                            url:
-                              type: string
-                              readOnly: true
-                          required:
-                            - name
-                          type: object
-                      required:
-                        - effect
-                        - short_effect
-                        - language
-                    readOnly: true
-                  effect_changes:
-                    type: array
-                    items:
-                      properties:
-                        version_group:
-                          properties:
-                            name:
-                              type: string
-                              maxLength: 100
-                            url:
-                              type: string
-                              readOnly: true
-                          required:
-                            - name
-                          type: object
-                        effect_entries:
-                          type: array
-                          items:
-                            properties:
-                              effect:
-                                type: string
-                                maxLength: 6000
-                              language:
-                                properties:
-                                  name:
-                                    type: string
-                                    maxLength: 100
-                                  url:
-                                    type: string
-                                    readOnly: true
-                                required:
-                                  - name
-                                type: object
-                            required:
-                              - effect
-                              - language
-                          readOnly: true
-                      required:
-                        - version_group
-                    readOnly: true
-                  flavor_text_entries:
-                    type: array
-                    items:
-                      properties:
-                        flavor_text:
-                          type: string
-                        language:
-                          properties:
-                            name:
-                              type: string
-                              maxLength: 100
-                            url:
-                              type: string
-                              readOnly: true
-                          required:
-                            - name
-                          type: object
-                        version_group:
-                          properties:
-                            name:
-                              type: string
-                              maxLength: 100
-                            url:
-                              type: string
-                              readOnly: true
-                          required:
-                            - name
-                          type: object
-                      required:
-                        - flavor_text
-                        - language
-                        - version_group
-                    readOnly: true
-                  pokemon:
-                    type: string
-                    readOnly: true
-                required:
-                  - name
-                  - generation
-          description: ""
+                $ref: "#/components/schemas/Ability"
 
   /api/v2/berry/:
     get:
@@ -5512,4 +5366,153 @@ components:
                 readOnly: true
             required:
               - name
+
+    Ability:
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+        is_main_series:
+          type: boolean
+        generation:
+          properties:
+            name:
+              type: string
+              maxLength: 100
+            url:
+              type: string
+              readOnly: true
+          required:
+            - name
+          type: object
+        names:
+          type: array
+          items:
+            properties:
+              name:
+                type: string
+                maxLength: 100
+              language:
+                properties:
+                  name:
+                    type: string
+                    maxLength: 100
+                  url:
+                    type: string
+                    readOnly: true
+                required:
+                  - name
+                type: object
+            required:
+              - name
+              - language
+          readOnly: true
+        effect_entries:
+          type: array
+          items:
+            properties:
+              effect:
+                type: string
+                maxLength: 6000
+              short_effect:
+                type: string
+                maxLength: 300
+              language:
+                properties:
+                  name:
+                    type: string
+                    maxLength: 100
+                  url:
+                    type: string
+                    readOnly: true
+                required:
+                  - name
+                type: object
+            required:
+              - effect
+              - short_effect
+              - language
+          readOnly: true
+        effect_changes:
+          type: array
+          items:
+            properties:
+              version_group:
+                properties:
+                  name:
+                    type: string
+                    maxLength: 100
+                  url:
+                    type: string
+                    readOnly: true
+                required:
+                  - name
+                type: object
+              effect_entries:
+                type: array
+                items:
+                  properties:
+                    effect:
+                      type: string
+                      maxLength: 6000
+                    language:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+                      type: object
+                  required:
+                    - effect
+                    - language
+                readOnly: true
+            required:
+              - version_group
+          readOnly: true
+        flavor_text_entries:
+          type: array
+          items:
+            properties:
+              flavor_text:
+                type: string
+              language:
+                properties:
+                  name:
+                    type: string
+                    maxLength: 100
+                  url:
+                    type: string
+                    readOnly: true
+                required:
+                  - name
+                type: object
+              version_group:
+                properties:
+                  name:
+                    type: string
+                    maxLength: 100
+                  url:
+                    type: string
+                    readOnly: true
+                required:
+                  - name
+                type: object
+            required:
+              - flavor_text
+              - language
+              - version_group
+          readOnly: true
+        pokemon:
+          type: string
+          readOnly: true
+      required:
+        - name
+        - generation
 
