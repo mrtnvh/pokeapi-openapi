@@ -1,0 +1,5736 @@
+openapi: 3.0.2
+info:
+  description: "The RESTful Pokémon API"
+  title: PokéAPI
+  version: "2.0.0"
+
+servers:
+  - url: https://pokeapi.co/api/v2/
+
+paths:
+  /api/v2/ability/:
+    get:
+      operationId: listAbilitys
+      description: ""
+      parameters:
+        - $ref: "#/components/parameters/offsetParam"
+        - $ref: "#/components/parameters/limitParam"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+          description: ""
+  /api/v2/ability/{id}/:
+    get:
+      operationId: retrieveAbility
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this ability.
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 100
+                  is_main_series:
+                    type: boolean
+                  generation:
+                    properties:
+                      name:
+                        type: string
+                        maxLength: 100
+                      url:
+                        type: string
+                        readOnly: true
+                    required:
+                      - name
+                    type: object
+                  names:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        language:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - name
+                        - language
+                    readOnly: true
+                  effect_entries:
+                    type: array
+                    items:
+                      properties:
+                        effect:
+                          type: string
+                          maxLength: 6000
+                        short_effect:
+                          type: string
+                          maxLength: 300
+                        language:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - effect
+                        - short_effect
+                        - language
+                    readOnly: true
+                  effect_changes:
+                    type: array
+                    items:
+                      properties:
+                        version_group:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                        effect_entries:
+                          type: array
+                          items:
+                            properties:
+                              effect:
+                                type: string
+                                maxLength: 6000
+                              language:
+                                properties:
+                                  name:
+                                    type: string
+                                    maxLength: 100
+                                  url:
+                                    type: string
+                                    readOnly: true
+                                required:
+                                  - name
+                                type: object
+                            required:
+                              - effect
+                              - language
+                          readOnly: true
+                      required:
+                        - version_group
+                    readOnly: true
+                  flavor_text_entries:
+                    type: array
+                    items:
+                      properties:
+                        flavor_text:
+                          type: string
+                        language:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                        version_group:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - flavor_text
+                        - language
+                        - version_group
+                    readOnly: true
+                  pokemon:
+                    type: string
+                    readOnly: true
+                required:
+                  - name
+                  - generation
+          description: ""
+  /api/v2/berry/:
+    get:
+      operationId: listBerrys
+      description: ""
+      parameters:
+        - $ref: "#/components/parameters/offsetParam"
+        - $ref: "#/components/parameters/limitParam"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+          description: ""
+  /api/v2/berry/{id}/:
+    get:
+      operationId: retrieveBerry
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this berry.
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 100
+                  growth_time:
+                    type: integer
+                    maximum: 2147483647
+                    minimum: -2147483648
+                  max_harvest:
+                    type: integer
+                    maximum: 2147483647
+                    minimum: -2147483648
+                  natural_gift_power:
+                    type: integer
+                    maximum: 2147483647
+                    minimum: -2147483648
+                  size:
+                    type: integer
+                    maximum: 2147483647
+                    minimum: -2147483648
+                  smoothness:
+                    type: integer
+                    maximum: 2147483647
+                    minimum: -2147483648
+                  soil_dryness:
+                    type: integer
+                    maximum: 2147483647
+                    minimum: -2147483648
+                  firmness:
+                    properties:
+                      name:
+                        type: string
+                        maxLength: 100
+                      url:
+                        type: string
+                        readOnly: true
+                    required:
+                      - name
+                    type: object
+                  flavors:
+                    type: string
+                    readOnly: true
+                  item:
+                    properties:
+                      name:
+                        type: string
+                        maxLength: 100
+                      url:
+                        type: string
+                        readOnly: true
+                    required:
+                      - name
+                    type: object
+                  natural_gift_type:
+                    properties:
+                      name:
+                        type: string
+                        maxLength: 100
+                      url:
+                        type: string
+                        readOnly: true
+                    required:
+                      - name
+                    type: object
+                required:
+                  - name
+                  - growth_time
+                  - max_harvest
+                  - natural_gift_power
+                  - size
+                  - smoothness
+                  - soil_dryness
+                  - firmness
+                  - item
+                  - natural_gift_type
+          description: ""
+  /api/v2/berry-firmness/:
+    get:
+      operationId: listBerryFirmness
+      description: ""
+      parameters:
+        - $ref: "#/components/parameters/offsetParam"
+        - $ref: "#/components/parameters/limitParam"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+          description: ""
+  /api/v2/berry-firmness/{id}/:
+    get:
+      operationId: retrieveBerryFirmness
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this berry firmness.
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 100
+                  berries:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+                    readOnly: true
+                  names:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        language:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - name
+                        - language
+                    readOnly: true
+                required:
+                  - name
+          description: ""
+  /api/v2/berry-flavor/:
+    get:
+      operationId: listBerryFlavors
+      description: ""
+      parameters:
+        - $ref: "#/components/parameters/offsetParam"
+        - $ref: "#/components/parameters/limitParam"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+          description: ""
+  /api/v2/berry-flavor/{id}/:
+    get:
+      operationId: retrieveBerryFlavor
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this berry flavor.
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 100
+                  berries:
+                    type: string
+                    readOnly: true
+                  contest_type:
+                    properties:
+                      name:
+                        type: string
+                        maxLength: 100
+                      url:
+                        type: string
+                        readOnly: true
+                    required:
+                      - name
+                    type: object
+                  names:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        language:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - name
+                        - language
+                    readOnly: true
+                required:
+                  - name
+                  - contest_type
+          description: ""
+  /api/v2/characteristic/:
+    get:
+      operationId: listCharacteristics
+      description: ""
+      parameters:
+        - $ref: "#/components/parameters/offsetParam"
+        - $ref: "#/components/parameters/limitParam"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        url:
+                          type: string
+                          readOnly: true
+          description: ""
+  /api/v2/characteristic/{id}/:
+    get:
+      operationId: retrieveCharacteristic
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this characteristic.
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  gene_modulo:
+                    type: integer
+                  possible_values:
+                    type: string
+                    readOnly: true
+                  highest_stat:
+                    properties:
+                      name:
+                        type: string
+                        maxLength: 100
+                      url:
+                        type: string
+                        readOnly: true
+                    required:
+                      - name
+                    type: object
+                  descriptions:
+                    type: array
+                    items:
+                      properties:
+                        description:
+                          type: string
+                          maxLength: 1000
+                        language:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - language
+                    readOnly: true
+                required:
+                  - gene_modulo
+                  - highest_stat
+          description: ""
+  /api/v2/contest-type/:
+    get:
+      operationId: listContestTypes
+      description: ""
+      parameters:
+        - $ref: "#/components/parameters/offsetParam"
+        - $ref: "#/components/parameters/limitParam"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+          description: ""
+  /api/v2/contest-type/{id}/:
+    get:
+      operationId: retrieveContestType
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this contest type.
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 100
+                  berry_flavor:
+                    properties:
+                      name:
+                        type: string
+                        maxLength: 100
+                      url:
+                        type: string
+                        readOnly: true
+                    required:
+                      - name
+                    type: object
+                    readOnly: true
+                  names:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        color:
+                          type: string
+                          maxLength: 10
+                        language:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - name
+                        - color
+                        - language
+                    readOnly: true
+                required:
+                  - name
+          description: ""
+  /api/v2/contest-effect/:
+    get:
+      operationId: listContestEffects
+      description: ""
+      parameters:
+        - $ref: "#/components/parameters/offsetParam"
+        - $ref: "#/components/parameters/limitParam"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        url:
+                          type: string
+                          readOnly: true
+          description: ""
+  /api/v2/contest-effect/{id}/:
+    get:
+      operationId: retrieveContestEffect
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this contest effect.
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  appeal:
+                    type: integer
+                    maximum: 2147483647
+                    minimum: -2147483648
+                  jam:
+                    type: integer
+                    maximum: 2147483647
+                    minimum: -2147483648
+                  effect_entries:
+                    type: array
+                    items:
+                      properties:
+                        effect:
+                          type: string
+                          maxLength: 6000
+                        language:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - effect
+                        - language
+                    readOnly: true
+                  flavor_text_entries:
+                    type: array
+                    items:
+                      properties:
+                        flavor_text:
+                          type: string
+                          maxLength: 500
+                        language:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - flavor_text
+                        - language
+                    readOnly: true
+                required:
+                  - appeal
+                  - jam
+          description: ""
+  /api/v2/egg-group/:
+    get:
+      operationId: listEggGroups
+      description: ""
+      parameters:
+        - $ref: "#/components/parameters/offsetParam"
+        - $ref: "#/components/parameters/limitParam"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+          description: ""
+  /api/v2/egg-group/{id}/:
+    get:
+      operationId: retrieveEggGroup
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this egg group.
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 100
+                  names:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        language:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - name
+                        - language
+                    readOnly: true
+                  pokemon_species:
+                    type: string
+                    readOnly: true
+                required:
+                  - name
+          description: ""
+  /api/v2/encounter-method/:
+    get:
+      operationId: listEncounterMethods
+      description: ""
+      parameters:
+        - $ref: "#/components/parameters/offsetParam"
+        - $ref: "#/components/parameters/limitParam"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+          description: ""
+  /api/v2/encounter-method/{id}/:
+    get:
+      operationId: retrieveEncounterMethod
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this encounter method.
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 100
+                  order:
+                    type: integer
+                    maximum: 2147483647
+                    minimum: -2147483648
+                    nullable: true
+                  names:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        language:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - name
+                        - language
+                    readOnly: true
+                required:
+                  - name
+          description: ""
+  /api/v2/encounter-condition/:
+    get:
+      operationId: listEncounterConditions
+      description: ""
+      parameters:
+        - $ref: "#/components/parameters/offsetParam"
+        - $ref: "#/components/parameters/limitParam"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+          description: ""
+  /api/v2/encounter-condition/{id}/:
+    get:
+      operationId: retrieveEncounterCondition
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this encounter condition.
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 100
+                  values:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+                    readOnly: true
+                  names:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        language:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - name
+                        - language
+                    readOnly: true
+                required:
+                  - name
+          description: ""
+  /api/v2/encounter-condition-value/:
+    get:
+      operationId: listEncounterConditionValues
+      description: ""
+      parameters:
+        - $ref: "#/components/parameters/offsetParam"
+        - $ref: "#/components/parameters/limitParam"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+          description: ""
+  /api/v2/encounter-condition-value/{id}/:
+    get:
+      operationId: retrieveEncounterConditionValue
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this encounter condition value.
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 100
+                  condition:
+                    properties:
+                      name:
+                        type: string
+                        maxLength: 100
+                      url:
+                        type: string
+                        readOnly: true
+                    required:
+                      - name
+                    type: object
+                  names:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        language:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - name
+                        - language
+                    readOnly: true
+                required:
+                  - name
+                  - condition
+          description: ""
+  /api/v2/evolution-chain/:
+    get:
+      operationId: listEvolutionChains
+      description: ""
+      parameters:
+        - $ref: "#/components/parameters/offsetParam"
+        - $ref: "#/components/parameters/limitParam"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        url:
+                          type: string
+                          readOnly: true
+          description: ""
+  /api/v2/evolution-chain/{id}/:
+    get:
+      operationId: retrieveEvolutionChain
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this evolution chain.
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  baby_trigger_item:
+                    properties:
+                      name:
+                        type: string
+                        maxLength: 100
+                      url:
+                        type: string
+                        readOnly: true
+                    required:
+                      - name
+                    type: object
+                  chain:
+                    type: string
+                    readOnly: true
+                required:
+                  - baby_trigger_item
+          description: ""
+  /api/v2/evolution-trigger/:
+    get:
+      operationId: listEvolutionTriggers
+      description: ""
+      parameters:
+        - $ref: "#/components/parameters/offsetParam"
+        - $ref: "#/components/parameters/limitParam"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+          description: ""
+  /api/v2/evolution-trigger/{id}/:
+    get:
+      operationId: retrieveEvolutionTrigger
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this evolution trigger.
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 100
+                  names:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        language:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - name
+                        - language
+                    readOnly: true
+                  pokemon_species:
+                    type: string
+                    readOnly: true
+                required:
+                  - name
+          description: ""
+  /api/v2/generation/:
+    get:
+      operationId: listGenerations
+      description: ""
+      parameters:
+        - $ref: "#/components/parameters/offsetParam"
+        - $ref: "#/components/parameters/limitParam"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+          description: ""
+  /api/v2/generation/{id}/:
+    get:
+      operationId: retrieveGeneration
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this generation.
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 100
+                  abilities:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+                    readOnly: true
+                  main_region:
+                    properties:
+                      name:
+                        type: string
+                        maxLength: 100
+                      url:
+                        type: string
+                        readOnly: true
+                    required:
+                      - name
+                    type: object
+                  moves:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+                    readOnly: true
+                  names:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        language:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - name
+                        - language
+                    readOnly: true
+                  pokemon_species:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+                    readOnly: true
+                  types:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+                    readOnly: true
+                  version_groups:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+                    readOnly: true
+                required:
+                  - name
+                  - main_region
+          description: ""
+  /api/v2/gender/:
+    get:
+      operationId: listGenders
+      description: ""
+      parameters:
+        - $ref: "#/components/parameters/offsetParam"
+        - $ref: "#/components/parameters/limitParam"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+          description: ""
+  /api/v2/gender/{id}/:
+    get:
+      operationId: retrieveGender
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this gender.
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 100
+                  pokemon_species_details:
+                    type: string
+                    readOnly: true
+                  required_for_evolution:
+                    type: string
+                    readOnly: true
+                required:
+                  - name
+          description: ""
+  /api/v2/growth-rate/:
+    get:
+      operationId: listGrowthRates
+      description: ""
+      parameters:
+        - $ref: "#/components/parameters/offsetParam"
+        - $ref: "#/components/parameters/limitParam"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+          description: ""
+  /api/v2/growth-rate/{id}/:
+    get:
+      operationId: retrieveGrowthRate
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this growth rate.
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 100
+                  formula:
+                    type: string
+                    maxLength: 500
+                  descriptions:
+                    type: array
+                    items:
+                      properties:
+                        description:
+                          type: string
+                          maxLength: 1000
+                        language:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - language
+                    readOnly: true
+                  levels:
+                    type: array
+                    items:
+                      properties:
+                        level:
+                          type: integer
+                          maximum: 2147483647
+                          minimum: -2147483648
+                        experience:
+                          type: integer
+                          maximum: 2147483647
+                          minimum: -2147483648
+                      required:
+                        - level
+                        - experience
+                    readOnly: true
+                  pokemon_species:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+                    readOnly: true
+                required:
+                  - name
+                  - formula
+          description: ""
+  /api/v2/item/:
+    get:
+      operationId: listItems
+      description: ""
+      parameters:
+        - $ref: "#/components/parameters/offsetParam"
+        - $ref: "#/components/parameters/limitParam"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+          description: ""
+  /api/v2/item/{id}/:
+    get:
+      operationId: retrieveItem
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this item.
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 100
+                  cost:
+                    type: integer
+                    maximum: 2147483647
+                    minimum: -2147483648
+                    nullable: true
+                  fling_power:
+                    type: integer
+                    maximum: 2147483647
+                    minimum: -2147483648
+                    nullable: true
+                  fling_effect:
+                    properties:
+                      name:
+                        type: string
+                        maxLength: 100
+                      url:
+                        type: string
+                        readOnly: true
+                    required:
+                      - name
+                    type: object
+                  attributes:
+                    type: string
+                    readOnly: true
+                  category:
+                    properties:
+                      name:
+                        type: string
+                        maxLength: 100
+                      url:
+                        type: string
+                        readOnly: true
+                    required:
+                      - name
+                    type: object
+                  effect_entries:
+                    type: array
+                    items:
+                      properties:
+                        effect:
+                          type: string
+                          maxLength: 6000
+                        short_effect:
+                          type: string
+                          maxLength: 300
+                        language:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - effect
+                        - short_effect
+                        - language
+                    readOnly: true
+                  flavor_text_entries:
+                    type: array
+                    items:
+                      properties:
+                        text:
+                          type: string
+                        version_group:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                        language:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - text
+                        - version_group
+                        - language
+                    readOnly: true
+                  game_indices:
+                    type: array
+                    items:
+                      properties:
+                        game_index:
+                          type: integer
+                          maximum: 2147483647
+                          minimum: -2147483648
+                        generation:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - game_index
+                        - generation
+                    readOnly: true
+                  names:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        language:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - name
+                        - language
+                    readOnly: true
+                  held_by_pokemon:
+                    type: string
+                    readOnly: true
+                  sprites:
+                    type: string
+                    readOnly: true
+                  baby_trigger_for:
+                    type: string
+                    readOnly: true
+                  machines:
+                    type: string
+                    readOnly: true
+                required:
+                  - name
+                  - fling_effect
+                  - category
+          description: ""
+  /api/v2/item-category/:
+    get:
+      operationId: listItemCategorys
+      description: ""
+      parameters:
+        - $ref: "#/components/parameters/offsetParam"
+        - $ref: "#/components/parameters/limitParam"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+          description: ""
+  /api/v2/item-category/{id}/:
+    get:
+      operationId: retrieveItemCategory
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this item category.
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 100
+                  items:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+                    readOnly: true
+                  names:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        language:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - name
+                        - language
+                    readOnly: true
+                  pocket:
+                    properties:
+                      name:
+                        type: string
+                        maxLength: 100
+                      url:
+                        type: string
+                        readOnly: true
+                    required:
+                      - name
+                    type: object
+                required:
+                  - name
+                  - pocket
+          description: ""
+  /api/v2/item-attribute/:
+    get:
+      operationId: listItemAttributes
+      description: ""
+      parameters:
+        - $ref: "#/components/parameters/offsetParam"
+        - $ref: "#/components/parameters/limitParam"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+          description: ""
+  /api/v2/item-attribute/{id}/:
+    get:
+      operationId: retrieveItemAttribute
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this item attribute.
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 100
+                  descriptions:
+                    type: array
+                    items:
+                      properties:
+                        description:
+                          type: string
+                          maxLength: 1000
+                        language:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - language
+                    readOnly: true
+                  items:
+                    type: string
+                    readOnly: true
+                  names:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        language:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - name
+                        - language
+                    readOnly: true
+                required:
+                  - name
+          description: ""
+  /api/v2/item-fling-effect/:
+    get:
+      operationId: listItemFlingEffects
+      description: ""
+      parameters:
+        - $ref: "#/components/parameters/offsetParam"
+        - $ref: "#/components/parameters/limitParam"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+          description: ""
+  /api/v2/item-fling-effect/{id}/:
+    get:
+      operationId: retrieveItemFlingEffect
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this item fling effect.
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 100
+                  effect_entries:
+                    type: array
+                    items:
+                      properties:
+                        effect:
+                          type: string
+                          maxLength: 6000
+                        language:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - effect
+                        - language
+                    readOnly: true
+                  items:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+                    readOnly: true
+                required:
+                  - name
+          description: ""
+  /api/v2/item-pocket/:
+    get:
+      operationId: listItemPockets
+      description: ""
+      parameters:
+        - $ref: "#/components/parameters/offsetParam"
+        - $ref: "#/components/parameters/limitParam"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+          description: ""
+  /api/v2/item-pocket/{id}/:
+    get:
+      operationId: retrieveItemPocket
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this item pocket.
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 100
+                  categories:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+                    readOnly: true
+                  names:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        language:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - name
+                        - language
+                    readOnly: true
+                required:
+                  - name
+          description: ""
+  /api/v2/language/:
+    get:
+      operationId: listLanguages
+      description: ""
+      parameters:
+        - $ref: "#/components/parameters/offsetParam"
+        - $ref: "#/components/parameters/limitParam"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+          description: ""
+  /api/v2/language/{id}/:
+    get:
+      operationId: retrieveLanguage
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this language.
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 100
+                  official:
+                    type: boolean
+                  iso639:
+                    type: string
+                    maxLength: 10
+                  iso3166:
+                    type: string
+                    maxLength: 2
+                  names:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        language:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - name
+                        - language
+                    readOnly: true
+                required:
+                  - name
+                  - iso639
+                  - iso3166
+          description: ""
+  /api/v2/location/:
+    get:
+      operationId: listLocations
+      description: ""
+      parameters:
+        - $ref: "#/components/parameters/offsetParam"
+        - $ref: "#/components/parameters/limitParam"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+          description: ""
+  /api/v2/location/{id}/:
+    get:
+      operationId: retrieveLocation
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this location.
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 100
+                  region:
+                    properties:
+                      name:
+                        type: string
+                        maxLength: 100
+                      url:
+                        type: string
+                        readOnly: true
+                    required:
+                      - name
+                    type: object
+                  names:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        language:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - name
+                        - language
+                    readOnly: true
+                  game_indices:
+                    type: array
+                    items:
+                      properties:
+                        game_index:
+                          type: integer
+                          maximum: 2147483647
+                          minimum: -2147483648
+                        generation:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - game_index
+                        - generation
+                    readOnly: true
+                  areas:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+                    readOnly: true
+                required:
+                  - name
+                  - region
+          description: ""
+  /api/v2/location-area/:
+    get:
+      operationId: listLocationAreas
+      description: ""
+      parameters:
+        - $ref: "#/components/parameters/offsetParam"
+        - $ref: "#/components/parameters/limitParam"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+          description: ""
+  /api/v2/location-area/{id}/:
+    get:
+      operationId: retrieveLocationArea
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this location area.
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 100
+                  game_index:
+                    type: integer
+                    maximum: 2147483647
+                    minimum: -2147483648
+                  encounter_method_rates:
+                    type: string
+                    readOnly: true
+                  location:
+                    properties:
+                      name:
+                        type: string
+                        maxLength: 100
+                      url:
+                        type: string
+                        readOnly: true
+                    required:
+                      - name
+                    type: object
+                  names:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        language:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - name
+                        - language
+                    readOnly: true
+                  pokemon_encounters:
+                    type: string
+                    readOnly: true
+                required:
+                  - name
+                  - game_index
+                  - location
+          description: ""
+  /api/v2/machine/:
+    get:
+      operationId: listMachines
+      description: ""
+      parameters:
+        - $ref: "#/components/parameters/offsetParam"
+        - $ref: "#/components/parameters/limitParam"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        url:
+                          type: string
+                          readOnly: true
+          description: ""
+  /api/v2/machine/{id}/:
+    get:
+      operationId: retrieveMachine
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this machine.
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  item:
+                    properties:
+                      name:
+                        type: string
+                        maxLength: 100
+                      url:
+                        type: string
+                        readOnly: true
+                    required:
+                      - name
+                    type: object
+                  version_group:
+                    properties:
+                      name:
+                        type: string
+                        maxLength: 100
+                      url:
+                        type: string
+                        readOnly: true
+                    required:
+                      - name
+                    type: object
+                  move:
+                    properties:
+                      name:
+                        type: string
+                        maxLength: 100
+                      url:
+                        type: string
+                        readOnly: true
+                    required:
+                      - name
+                    type: object
+                required:
+                  - item
+                  - version_group
+                  - move
+          description: ""
+  /api/v2/move/:
+    get:
+      operationId: listMoves
+      description: ""
+      parameters:
+        - $ref: "#/components/parameters/offsetParam"
+        - $ref: "#/components/parameters/limitParam"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+          description: ""
+  /api/v2/move/{id}/:
+    get:
+      operationId: retrieveMove
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this move.
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 100
+                  accuracy:
+                    type: integer
+                    maximum: 2147483647
+                    minimum: -2147483648
+                    nullable: true
+                  effect_chance:
+                    type: integer
+                  pp:
+                    type: integer
+                    maximum: 2147483647
+                    minimum: -2147483648
+                    nullable: true
+                  priority:
+                    type: integer
+                    maximum: 2147483647
+                    minimum: -2147483648
+                    nullable: true
+                  power:
+                    type: integer
+                    maximum: 2147483647
+                    minimum: -2147483648
+                    nullable: true
+                  contest_combos:
+                    type: string
+                    readOnly: true
+                  contest_type:
+                    properties:
+                      name:
+                        type: string
+                        maxLength: 100
+                      url:
+                        type: string
+                        readOnly: true
+                    required:
+                      - name
+                    type: object
+                  contest_effect:
+                    properties:
+                      url:
+                        type: string
+                        readOnly: true
+                    type: object
+                  damage_class:
+                    properties:
+                      name:
+                        type: string
+                        maxLength: 100
+                      url:
+                        type: string
+                        readOnly: true
+                    required:
+                      - name
+                    type: object
+                  effect_entries:
+                    type: string
+                    readOnly: true
+                  effect_changes:
+                    type: string
+                    readOnly: true
+                  generation:
+                    properties:
+                      name:
+                        type: string
+                        maxLength: 100
+                      url:
+                        type: string
+                        readOnly: true
+                    required:
+                      - name
+                    type: object
+                  meta:
+                    properties:
+                      ailment:
+                        properties:
+                          name:
+                            type: string
+                            maxLength: 100
+                          url:
+                            type: string
+                            readOnly: true
+                        required:
+                          - name
+                        type: object
+                      category:
+                        properties:
+                          name:
+                            type: string
+                            maxLength: 100
+                          url:
+                            type: string
+                            readOnly: true
+                        required:
+                          - name
+                        type: object
+                      min_hits:
+                        type: integer
+                        maximum: 2147483647
+                        minimum: -2147483648
+                        nullable: true
+                      max_hits:
+                        type: integer
+                        maximum: 2147483647
+                        minimum: -2147483648
+                        nullable: true
+                      min_turns:
+                        type: integer
+                        maximum: 2147483647
+                        minimum: -2147483648
+                        nullable: true
+                      max_turns:
+                        type: integer
+                        maximum: 2147483647
+                        minimum: -2147483648
+                        nullable: true
+                      drain:
+                        type: integer
+                        maximum: 2147483647
+                        minimum: -2147483648
+                        nullable: true
+                      healing:
+                        type: integer
+                        maximum: 2147483647
+                        minimum: -2147483648
+                        nullable: true
+                      crit_rate:
+                        type: integer
+                        maximum: 2147483647
+                        minimum: -2147483648
+                        nullable: true
+                      ailment_chance:
+                        type: integer
+                        maximum: 2147483647
+                        minimum: -2147483648
+                        nullable: true
+                      flinch_chance:
+                        type: integer
+                        maximum: 2147483647
+                        minimum: -2147483648
+                        nullable: true
+                      stat_chance:
+                        type: integer
+                        maximum: 2147483647
+                        minimum: -2147483648
+                        nullable: true
+                    required:
+                      - ailment
+                      - category
+                    type: object
+                    readOnly: true
+                  names:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        language:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - name
+                        - language
+                    readOnly: true
+                  past_values:
+                    type: array
+                    items:
+                      properties:
+                        accuracy:
+                          type: integer
+                          maximum: 2147483647
+                          minimum: -2147483648
+                          nullable: true
+                        power:
+                          type: integer
+                          maximum: 2147483647
+                          minimum: -2147483648
+                          nullable: true
+                        pp:
+                          type: integer
+                          maximum: 2147483647
+                          minimum: -2147483648
+                          nullable: true
+                        effect_chance:
+                          type: integer
+                        effect_entries:
+                          type: string
+                          readOnly: true
+                        type:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                        version_group:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - effect_chance
+                        - type
+                        - version_group
+                    readOnly: true
+                  stat_changes:
+                    type: string
+                    readOnly: true
+                  super_contest_effect:
+                    properties:
+                      url:
+                        type: string
+                        readOnly: true
+                    type: object
+                  target:
+                    properties:
+                      name:
+                        type: string
+                        maxLength: 100
+                      url:
+                        type: string
+                        readOnly: true
+                    required:
+                      - name
+                    type: object
+                  type:
+                    properties:
+                      name:
+                        type: string
+                        maxLength: 100
+                      url:
+                        type: string
+                        readOnly: true
+                    required:
+                      - name
+                    type: object
+                  machines:
+                    type: string
+                    readOnly: true
+                  flavor_text_entries:
+                    type: array
+                    items:
+                      properties:
+                        flavor_text:
+                          type: string
+                        language:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                        version_group:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - flavor_text
+                        - language
+                        - version_group
+                    readOnly: true
+                required:
+                  - name
+                  - effect_chance
+                  - contest_type
+                  - contest_effect
+                  - damage_class
+                  - generation
+                  - super_contest_effect
+                  - target
+                  - type
+          description: ""
+  /api/v2/move-ailment/:
+    get:
+      operationId: listMoveMetaAilments
+      description: ""
+      parameters:
+        - $ref: "#/components/parameters/offsetParam"
+        - $ref: "#/components/parameters/limitParam"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+          description: ""
+  /api/v2/move-ailment/{id}/:
+    get:
+      operationId: retrieveMoveMetaAilment
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this move meta ailment.
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 100
+                  moves:
+                    type: string
+                    readOnly: true
+                  names:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        language:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - name
+                        - language
+                    readOnly: true
+                required:
+                  - name
+          description: ""
+  /api/v2/move-battle-style/:
+    get:
+      operationId: listMoveBattleStyles
+      description: ""
+      parameters:
+        - $ref: "#/components/parameters/offsetParam"
+        - $ref: "#/components/parameters/limitParam"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+          description: ""
+  /api/v2/move-battle-style/{id}/:
+    get:
+      operationId: retrieveMoveBattleStyle
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this move battle style.
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 100
+                  names:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        language:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - name
+                        - language
+                    readOnly: true
+                required:
+                  - name
+          description: ""
+  /api/v2/move-category/:
+    get:
+      operationId: listMoveMetaCategorys
+      description: ""
+      parameters:
+        - $ref: "#/components/parameters/offsetParam"
+        - $ref: "#/components/parameters/limitParam"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+          description: ""
+  /api/v2/move-category/{id}/:
+    get:
+      operationId: retrieveMoveMetaCategory
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this move meta category.
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 100
+                  descriptions:
+                    type: array
+                    items:
+                      properties:
+                        description:
+                          type: string
+                          maxLength: 1000
+                        language:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - language
+                    readOnly: true
+                  moves:
+                    type: string
+                    readOnly: true
+                required:
+                  - name
+          description: ""
+  /api/v2/move-damage-class/:
+    get:
+      operationId: listMoveDamageClass
+      description: ""
+      parameters:
+        - $ref: "#/components/parameters/offsetParam"
+        - $ref: "#/components/parameters/limitParam"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+          description: ""
+  /api/v2/move-damage-class/{id}/:
+    get:
+      operationId: retrieveMoveDamageClass
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this move damage class.
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 100
+                  descriptions:
+                    type: array
+                    items:
+                      properties:
+                        description:
+                          type: string
+                          maxLength: 1000
+                        language:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - language
+                    readOnly: true
+                  moves:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+                    readOnly: true
+                  names:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        language:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - name
+                        - language
+                    readOnly: true
+                required:
+                  - name
+          description: ""
+  /api/v2/move-learn-method/:
+    get:
+      operationId: listMoveLearnMethods
+      description: ""
+      parameters:
+        - $ref: "#/components/parameters/offsetParam"
+        - $ref: "#/components/parameters/limitParam"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+          description: ""
+  /api/v2/move-learn-method/{id}/:
+    get:
+      operationId: retrieveMoveLearnMethod
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this move learn method.
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 100
+                  names:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        language:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - name
+                        - language
+                    readOnly: true
+                  descriptions:
+                    type: array
+                    items:
+                      properties:
+                        description:
+                          type: string
+                          maxLength: 1000
+                        language:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - language
+                    readOnly: true
+                  version_groups:
+                    type: string
+                    readOnly: true
+                required:
+                  - name
+          description: ""
+  /api/v2/move-target/:
+    get:
+      operationId: listMoveTargets
+      description: ""
+      parameters:
+        - $ref: "#/components/parameters/offsetParam"
+        - $ref: "#/components/parameters/limitParam"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+          description: ""
+  /api/v2/move-target/{id}/:
+    get:
+      operationId: retrieveMoveTarget
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this move target.
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 100
+                  descriptions:
+                    type: array
+                    items:
+                      properties:
+                        description:
+                          type: string
+                          maxLength: 1000
+                        language:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - language
+                    readOnly: true
+                  moves:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+                    readOnly: true
+                  names:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        language:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - name
+                        - language
+                    readOnly: true
+                required:
+                  - name
+          description: ""
+  /api/v2/nature/:
+    get:
+      operationId: listNatures
+      description: ""
+      parameters:
+        - $ref: "#/components/parameters/offsetParam"
+        - $ref: "#/components/parameters/limitParam"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+          description: ""
+  /api/v2/nature/{id}/:
+    get:
+      operationId: retrieveNature
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this nature.
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 100
+                  decreased_stat:
+                    properties:
+                      name:
+                        type: string
+                        maxLength: 100
+                      url:
+                        type: string
+                        readOnly: true
+                    required:
+                      - name
+                    type: object
+                  increased_stat:
+                    properties:
+                      name:
+                        type: string
+                        maxLength: 100
+                      url:
+                        type: string
+                        readOnly: true
+                    required:
+                      - name
+                    type: object
+                  likes_flavor:
+                    properties:
+                      name:
+                        type: string
+                        maxLength: 100
+                      url:
+                        type: string
+                        readOnly: true
+                    required:
+                      - name
+                    type: object
+                  hates_flavor:
+                    properties:
+                      name:
+                        type: string
+                        maxLength: 100
+                      url:
+                        type: string
+                        readOnly: true
+                    required:
+                      - name
+                    type: object
+                  berries:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+                    readOnly: true
+                  pokeathlon_stat_changes:
+                    type: string
+                    readOnly: true
+                  move_battle_style_preferences:
+                    type: array
+                    items:
+                      properties:
+                        low_hp_preference:
+                          type: integer
+                          maximum: 2147483647
+                          minimum: -2147483648
+                        high_hp_preference:
+                          type: integer
+                          maximum: 2147483647
+                          minimum: -2147483648
+                        move_battle_style:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - low_hp_preference
+                        - high_hp_preference
+                        - move_battle_style
+                    readOnly: true
+                  names:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        language:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - name
+                        - language
+                    readOnly: true
+                required:
+                  - name
+                  - decreased_stat
+                  - increased_stat
+                  - likes_flavor
+                  - hates_flavor
+          description: ""
+  /api/v2/pal-park-area/:
+    get:
+      operationId: listPalParkAreas
+      description: ""
+      parameters:
+        - $ref: "#/components/parameters/offsetParam"
+        - $ref: "#/components/parameters/limitParam"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+          description: ""
+  /api/v2/pal-park-area/{id}/:
+    get:
+      operationId: retrievePalParkArea
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this pal park area.
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 100
+                  names:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        language:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - name
+                        - language
+                    readOnly: true
+                  pokemon_encounters:
+                    type: string
+                    readOnly: true
+                required:
+                  - name
+          description: ""
+  /api/v2/pokedex/:
+    get:
+      operationId: listPokedexs
+      description: ""
+      parameters:
+        - $ref: "#/components/parameters/offsetParam"
+        - $ref: "#/components/parameters/limitParam"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+          description: ""
+  /api/v2/pokedex/{id}/:
+    get:
+      operationId: retrievePokedex
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this pokedex.
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 100
+                  is_main_series:
+                    type: boolean
+                  descriptions:
+                    type: array
+                    items:
+                      properties:
+                        description:
+                          type: string
+                          maxLength: 1000
+                        language:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - language
+                    readOnly: true
+                  names:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        language:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - name
+                        - language
+                    readOnly: true
+                  pokemon_entries:
+                    type: string
+                    readOnly: true
+                  region:
+                    properties:
+                      name:
+                        type: string
+                        maxLength: 100
+                      url:
+                        type: string
+                        readOnly: true
+                    required:
+                      - name
+                    type: object
+                  version_groups:
+                    type: string
+                    readOnly: true
+                required:
+                  - name
+                  - region
+          description: ""
+  /api/v2/pokemon/:
+    get:
+      operationId: listPokemons
+      description: ""
+      parameters:
+        - $ref: "#/components/parameters/offsetParam"
+        - $ref: "#/components/parameters/limitParam"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+          description: ""
+  /api/v2/pokemon/{id}/:
+    get:
+      operationId: retrievePokemon
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this pokemon.
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 100
+                  base_experience:
+                    type: integer
+                    maximum: 2147483647
+                    minimum: -2147483648
+                  height:
+                    type: integer
+                    maximum: 2147483647
+                    minimum: -2147483648
+                  is_default:
+                    type: boolean
+                  order:
+                    type: integer
+                    maximum: 2147483647
+                    minimum: -2147483648
+                    nullable: true
+                  weight:
+                    type: integer
+                    maximum: 2147483647
+                    minimum: -2147483648
+                  abilities:
+                    type: string
+                    readOnly: true
+                  forms:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+                    readOnly: true
+                  game_indices:
+                    type: array
+                    items:
+                      properties:
+                        game_index:
+                          type: integer
+                          maximum: 2147483647
+                          minimum: -2147483648
+                        version:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - game_index
+                        - version
+                    readOnly: true
+                  held_items:
+                    type: string
+                    readOnly: true
+                  location_area_encounters:
+                    type: string
+                    readOnly: true
+                  moves:
+                    type: string
+                    readOnly: true
+                  species:
+                    properties:
+                      name:
+                        type: string
+                        maxLength: 100
+                      url:
+                        type: string
+                        readOnly: true
+                    required:
+                      - name
+                    type: object
+                  sprites:
+                    type: string
+                    readOnly: true
+                  stats:
+                    type: array
+                    items:
+                      properties:
+                        base_stat:
+                          type: integer
+                          maximum: 2147483647
+                          minimum: -2147483648
+                        effort:
+                          type: integer
+                          maximum: 2147483647
+                          minimum: -2147483648
+                        stat:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - base_stat
+                        - effort
+                        - stat
+                    readOnly: true
+                  types:
+                    type: string
+                    readOnly: true
+                required:
+                  - name
+                  - base_experience
+                  - height
+                  - weight
+                  - species
+          description: ""
+  /api/v2/pokemon-color/:
+    get:
+      operationId: listPokemonColors
+      description: ""
+      parameters:
+        - $ref: "#/components/parameters/offsetParam"
+        - $ref: "#/components/parameters/limitParam"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+          description: ""
+  /api/v2/pokemon-color/{id}/:
+    get:
+      operationId: retrievePokemonColor
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this pokemon color.
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 100
+                  names:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        language:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - name
+                        - language
+                    readOnly: true
+                  pokemon_species:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+                    readOnly: true
+                required:
+                  - name
+          description: ""
+  /api/v2/pokemon-form/:
+    get:
+      operationId: listPokemonForms
+      description: ""
+      parameters:
+        - $ref: "#/components/parameters/offsetParam"
+        - $ref: "#/components/parameters/limitParam"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+          description: ""
+  /api/v2/pokemon-form/{id}/:
+    get:
+      operationId: retrievePokemonForm
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this pokemon form.
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 100
+                  order:
+                    type: integer
+                    maximum: 2147483647
+                    minimum: -2147483648
+                    nullable: true
+                  form_order:
+                    type: integer
+                    maximum: 2147483647
+                    minimum: -2147483648
+                    nullable: true
+                  is_default:
+                    type: boolean
+                  is_battle_only:
+                    type: boolean
+                  is_mega:
+                    type: boolean
+                  form_name:
+                    type: string
+                    maxLength: 30
+                  pokemon:
+                    properties:
+                      name:
+                        type: string
+                        maxLength: 100
+                      url:
+                        type: string
+                        readOnly: true
+                    required:
+                      - name
+                    type: object
+                  sprites:
+                    type: string
+                    readOnly: true
+                  version_group:
+                    properties:
+                      name:
+                        type: string
+                        maxLength: 100
+                      url:
+                        type: string
+                        readOnly: true
+                    required:
+                      - name
+                    type: object
+                  form_names:
+                    type: string
+                    readOnly: true
+                  names:
+                    type: string
+                    readOnly: true
+                required:
+                  - name
+                  - form_name
+                  - pokemon
+                  - version_group
+          description: ""
+  /api/v2/pokemon-habitat/:
+    get:
+      operationId: listPokemonHabitats
+      description: ""
+      parameters:
+        - $ref: "#/components/parameters/offsetParam"
+        - $ref: "#/components/parameters/limitParam"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+          description: ""
+  /api/v2/pokemon-habitat/{id}/:
+    get:
+      operationId: retrievePokemonHabitat
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this pokemon habitat.
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 100
+                  names:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        language:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - name
+                        - language
+                    readOnly: true
+                  pokemon_species:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+                    readOnly: true
+                required:
+                  - name
+          description: ""
+  /api/v2/pokemon-shape/:
+    get:
+      operationId: listPokemonShapes
+      description: ""
+      parameters:
+        - $ref: "#/components/parameters/offsetParam"
+        - $ref: "#/components/parameters/limitParam"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+          description: ""
+  /api/v2/pokemon-shape/{id}/:
+    get:
+      operationId: retrievePokemonShape
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this pokemon shape.
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 100
+                  awesome_names:
+                    type: string
+                    readOnly: true
+                  names:
+                    type: string
+                    readOnly: true
+                  pokemon_species:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+                    readOnly: true
+                required:
+                  - name
+          description: ""
+  /api/v2/pokemon-species/:
+    get:
+      operationId: listPokemonSpecies
+      description: ""
+      parameters:
+        - $ref: "#/components/parameters/offsetParam"
+        - $ref: "#/components/parameters/limitParam"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+          description: ""
+  /api/v2/pokemon-species/{id}/:
+    get:
+      operationId: retrievePokemonSpecies
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this pokemon species.
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 100
+                  order:
+                    type: integer
+                    maximum: 2147483647
+                    minimum: -2147483648
+                    nullable: true
+                  gender_rate:
+                    type: integer
+                    maximum: 2147483647
+                    minimum: -2147483648
+                  capture_rate:
+                    type: integer
+                    maximum: 2147483647
+                    minimum: -2147483648
+                  base_happiness:
+                    type: integer
+                    maximum: 2147483647
+                    minimum: -2147483648
+                  is_baby:
+                    type: boolean
+                  hatch_counter:
+                    type: integer
+                    maximum: 2147483647
+                    minimum: -2147483648
+                  has_gender_differences:
+                    type: boolean
+                  forms_switchable:
+                    type: boolean
+                  growth_rate:
+                    properties:
+                      name:
+                        type: string
+                        maxLength: 100
+                      url:
+                        type: string
+                        readOnly: true
+                    required:
+                      - name
+                    type: object
+                  pokedex_numbers:
+                    type: array
+                    items:
+                      properties:
+                        entry_number:
+                          type: integer
+                        pokedex:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - entry_number
+                        - pokedex
+                    readOnly: true
+                  egg_groups:
+                    type: string
+                    readOnly: true
+                  color:
+                    properties:
+                      name:
+                        type: string
+                        maxLength: 100
+                      url:
+                        type: string
+                        readOnly: true
+                    required:
+                      - name
+                    type: object
+                  shape:
+                    properties:
+                      name:
+                        type: string
+                        maxLength: 100
+                      url:
+                        type: string
+                        readOnly: true
+                    required:
+                      - name
+                    type: object
+                  evolves_from_species:
+                    properties:
+                      name:
+                        type: string
+                        maxLength: 100
+                      url:
+                        type: string
+                        readOnly: true
+                    required:
+                      - name
+                    type: object
+                  evolution_chain:
+                    properties:
+                      url:
+                        type: string
+                        readOnly: true
+                    type: object
+                  habitat:
+                    properties:
+                      name:
+                        type: string
+                        maxLength: 100
+                      url:
+                        type: string
+                        readOnly: true
+                    required:
+                      - name
+                    type: object
+                  generation:
+                    properties:
+                      name:
+                        type: string
+                        maxLength: 100
+                      url:
+                        type: string
+                        readOnly: true
+                    required:
+                      - name
+                    type: object
+                  names:
+                    type: string
+                    readOnly: true
+                  pal_park_encounters:
+                    type: string
+                    readOnly: true
+                  form_descriptions:
+                    type: array
+                    items:
+                      properties:
+                        description:
+                          type: string
+                          maxLength: 1000
+                        language:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - language
+                    readOnly: true
+                  flavor_text_entries:
+                    type: array
+                    items:
+                      properties:
+                        flavor_text:
+                          type: string
+                        language:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                        version:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - flavor_text
+                        - language
+                        - version
+                    readOnly: true
+                  genera:
+                    type: string
+                    readOnly: true
+                  varieties:
+                    type: string
+                    readOnly: true
+                required:
+                  - name
+                  - gender_rate
+                  - capture_rate
+                  - base_happiness
+                  - hatch_counter
+                  - growth_rate
+                  - color
+                  - shape
+                  - evolves_from_species
+                  - evolution_chain
+                  - habitat
+                  - generation
+          description: ""
+  /api/v2/pokeathlon-stat/:
+    get:
+      operationId: listPokeathlonStats
+      description: ""
+      parameters:
+        - $ref: "#/components/parameters/offsetParam"
+        - $ref: "#/components/parameters/limitParam"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+          description: ""
+  /api/v2/pokeathlon-stat/{id}/:
+    get:
+      operationId: retrievePokeathlonStat
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this pokeathlon stat.
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 100
+                  affecting_natures:
+                    type: string
+                    readOnly: true
+                  names:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        language:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - name
+                        - language
+                    readOnly: true
+                required:
+                  - name
+          description: ""
+  /api/v2/region/:
+    get:
+      operationId: listRegions
+      description: ""
+      parameters:
+        - $ref: "#/components/parameters/offsetParam"
+        - $ref: "#/components/parameters/limitParam"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+          description: ""
+  /api/v2/region/{id}/:
+    get:
+      operationId: retrieveRegion
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this region.
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 100
+                  locations:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+                    readOnly: true
+                  main_generation:
+                    properties:
+                      name:
+                        type: string
+                        maxLength: 100
+                      url:
+                        type: string
+                        readOnly: true
+                    required:
+                      - name
+                    type: object
+                    readOnly: true
+                  names:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        language:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - name
+                        - language
+                    readOnly: true
+                  pokedexes:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+                    readOnly: true
+                  version_groups:
+                    type: string
+                    readOnly: true
+                required:
+                  - name
+          description: ""
+  /api/v2/stat/:
+    get:
+      operationId: listStats
+      description: ""
+      parameters:
+        - $ref: "#/components/parameters/offsetParam"
+        - $ref: "#/components/parameters/limitParam"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+          description: ""
+  /api/v2/stat/{id}/:
+    get:
+      operationId: retrieveStat
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this stat.
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 100
+                  game_index:
+                    type: integer
+                    maximum: 2147483647
+                    minimum: -2147483648
+                  is_battle_only:
+                    type: boolean
+                  affecting_moves:
+                    type: string
+                    readOnly: true
+                  affecting_natures:
+                    type: string
+                    readOnly: true
+                  characteristics:
+                    type: array
+                    items:
+                      properties:
+                        url:
+                          type: string
+                          readOnly: true
+                    readOnly: true
+                  move_damage_class:
+                    properties:
+                      name:
+                        type: string
+                        maxLength: 100
+                      url:
+                        type: string
+                        readOnly: true
+                    required:
+                      - name
+                    type: object
+                  names:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        language:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - name
+                        - language
+                    readOnly: true
+                required:
+                  - name
+                  - game_index
+                  - move_damage_class
+          description: ""
+  /api/v2/super-contest-effect/:
+    get:
+      operationId: listSuperContestEffects
+      description: ""
+      parameters:
+        - $ref: "#/components/parameters/offsetParam"
+        - $ref: "#/components/parameters/limitParam"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        url:
+                          type: string
+                          readOnly: true
+          description: ""
+  /api/v2/super-contest-effect/{id}/:
+    get:
+      operationId: retrieveSuperContestEffect
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this super contest effect.
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  appeal:
+                    type: integer
+                    maximum: 2147483647
+                    minimum: -2147483648
+                  flavor_text_entries:
+                    type: array
+                    items:
+                      properties:
+                        flavor_text:
+                          type: string
+                          maxLength: 500
+                        language:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - flavor_text
+                        - language
+                    readOnly: true
+                  moves:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+                    readOnly: true
+                required:
+                  - appeal
+          description: ""
+  /api/v2/type/:
+    get:
+      operationId: listTypes
+      description: ""
+      parameters:
+        - $ref: "#/components/parameters/offsetParam"
+        - $ref: "#/components/parameters/limitParam"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+          description: ""
+  /api/v2/type/{id}/:
+    get:
+      operationId: retrieveType
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this type.
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 100
+                  damage_relations:
+                    type: string
+                    readOnly: true
+                  game_indices:
+                    type: array
+                    items:
+                      properties:
+                        game_index:
+                          type: integer
+                          maximum: 2147483647
+                          minimum: -2147483648
+                        generation:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - game_index
+                        - generation
+                    readOnly: true
+                  generation:
+                    properties:
+                      name:
+                        type: string
+                        maxLength: 100
+                      url:
+                        type: string
+                        readOnly: true
+                    required:
+                      - name
+                    type: object
+                  move_damage_class:
+                    properties:
+                      name:
+                        type: string
+                        maxLength: 100
+                      url:
+                        type: string
+                        readOnly: true
+                    required:
+                      - name
+                    type: object
+                  names:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        language:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - name
+                        - language
+                    readOnly: true
+                  pokemon:
+                    type: string
+                    readOnly: true
+                  moves:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+                    readOnly: true
+                required:
+                  - name
+                  - generation
+                  - move_damage_class
+          description: ""
+  /api/v2/version/:
+    get:
+      operationId: listVersions
+      description: ""
+      parameters:
+        - $ref: "#/components/parameters/offsetParam"
+        - $ref: "#/components/parameters/limitParam"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+          description: ""
+  /api/v2/version/{id}/:
+    get:
+      operationId: retrieveVersion
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this version.
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 100
+                  names:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        language:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
+                          type: object
+                      required:
+                        - name
+                        - language
+                    readOnly: true
+                  version_group:
+                    properties:
+                      name:
+                        type: string
+                        maxLength: 100
+                      url:
+                        type: string
+                        readOnly: true
+                    required:
+                      - name
+                    type: object
+                required:
+                  - name
+                  - version_group
+          description: ""
+  /api/v2/version-group/:
+    get:
+      operationId: listVersionGroups
+      description: ""
+      parameters:
+        - $ref: "#/components/parameters/offsetParam"
+        - $ref: "#/components/parameters/limitParam"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+          description: ""
+  /api/v2/version-group/{id}/:
+    get:
+      operationId: retrieveVersionGroup
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this version group.
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 100
+                  order:
+                    type: integer
+                    maximum: 2147483647
+                    minimum: -2147483648
+                    nullable: true
+                  generation:
+                    properties:
+                      name:
+                        type: string
+                        maxLength: 100
+                      url:
+                        type: string
+                        readOnly: true
+                    required:
+                      - name
+                    type: object
+                  move_learn_methods:
+                    type: string
+                    readOnly: true
+                  pokedexes:
+                    type: string
+                    readOnly: true
+                  regions:
+                    type: string
+                    readOnly: true
+                  versions:
+                    type: array
+                    items:
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                        url:
+                          type: string
+                          readOnly: true
+                      required:
+                        - name
+                    readOnly: true
+                required:
+                  - name
+                  - generation
+          description: ""
+  /api/v2/pokemon/{pokemon_id}/encounters:
+    get:
+      operationId: listPokemonEncounters
+      description: Handles Pokemon Encounters as a sub-resource.
+      parameters:
+        - name: pokemon_id
+          in: path
+          required: true
+          description: ""
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: array
+                items: {}
+          description: ""
+
+components:
+  parameters:
+    limitParam:
+      in: query
+      name: limit
+      schema:
+        description: Number of results to return per page.
+        title: Limit
+        type: integer
+    offsetParam:
+      in: query
+      name: offset
+      schema:
+        description: The initial index from which to return the results.
+        title: Offset
+        type: integer
