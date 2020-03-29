@@ -8,9 +8,10 @@ servers:
   - url: https://pokeapi.co/api/v2/
 
 paths:
+
   /api/v2/ability/:
     get:
-      operationId: listAbilitys
+      operationId: listAbilities
       description: ""
       parameters:
         - $ref: "#/components/parameters/offsetParam"
@@ -20,30 +21,24 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                  previous:
-                    type: string
-                    nullable: true
-                  results:
-                    type: array
-                    items:
-                      properties:
-                        name:
-                          type: string
-                          maxLength: 100
-                        url:
-                          type: string
-                          readOnly: true
-                      required:
-                        - name
+                allOf:
+                  - $ref: "#/components/schemas/NamedAPIResourceList"
+                  - type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
           description: ""
+
   /api/v2/ability/{id}/:
     get:
       operationId: retrieveAbility
@@ -208,9 +203,10 @@ paths:
                   - name
                   - generation
           description: ""
+
   /api/v2/berry/:
     get:
-      operationId: listBerrys
+      operationId: listBerries
       description: ""
       parameters:
         - $ref: "#/components/parameters/offsetParam"
@@ -220,30 +216,24 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                  previous:
-                    type: string
-                    nullable: true
-                  results:
-                    type: array
-                    items:
-                      properties:
-                        name:
-                          type: string
-                          maxLength: 100
-                        url:
-                          type: string
-                          readOnly: true
-                      required:
-                        - name
+                allOf:
+                  - $ref: "#/components/schemas/NamedAPIResourceList"
+                  - type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
           description: ""
+
   /api/v2/berry/{id}/:
     get:
       operationId: retrieveBerry
@@ -339,6 +329,7 @@ paths:
                   - item
                   - natural_gift_type
           description: ""
+
   /api/v2/berry-firmness/:
     get:
       operationId: listBerryFirmness
@@ -351,30 +342,24 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                  previous:
-                    type: string
-                    nullable: true
-                  results:
-                    type: array
-                    items:
-                      properties:
-                        name:
-                          type: string
-                          maxLength: 100
-                        url:
-                          type: string
-                          readOnly: true
-                      required:
-                        - name
+                allOf:
+                  - $ref: "#/components/schemas/NamedAPIResourceList"
+                  - type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
           description: ""
+
   /api/v2/berry-firmness/{id}/:
     get:
       operationId: retrieveBerryFirmness
@@ -436,6 +421,7 @@ paths:
                 required:
                   - name
           description: ""
+
   /api/v2/berry-flavor/:
     get:
       operationId: listBerryFlavors
@@ -448,30 +434,24 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                  previous:
-                    type: string
-                    nullable: true
-                  results:
-                    type: array
-                    items:
-                      properties:
-                        name:
-                          type: string
-                          maxLength: 100
-                        url:
-                          type: string
-                          readOnly: true
-                      required:
-                        - name
+                allOf:
+                  - $ref: "#/components/schemas/NamedAPIResourceList"
+                  - type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
           description: ""
+
   /api/v2/berry-flavor/{id}/:
     get:
       operationId: retrieveBerryFlavor
@@ -535,6 +515,7 @@ paths:
                   - name
                   - contest_type
           description: ""
+
   /api/v2/characteristic/:
     get:
       operationId: listCharacteristics
@@ -547,25 +528,19 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                  previous:
-                    type: string
-                    nullable: true
-                  results:
-                    type: array
-                    items:
-                      properties:
-                        url:
-                          type: string
-                          readOnly: true
+                allOf:
+                  - $ref: "#/components/schemas/NamedAPIResourceList"
+                  - type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          properties:
+                            url:
+                              type: string
+                              readOnly: true
           description: ""
+
   /api/v2/characteristic/{id}/:
     get:
       operationId: retrieveCharacteristic
@@ -627,6 +602,7 @@ paths:
                   - gene_modulo
                   - highest_stat
           description: ""
+
   /api/v2/contest-type/:
     get:
       operationId: listContestTypes
@@ -639,30 +615,24 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                  previous:
-                    type: string
-                    nullable: true
-                  results:
-                    type: array
-                    items:
-                      properties:
-                        name:
-                          type: string
-                          maxLength: 100
-                        url:
-                          type: string
-                          readOnly: true
-                      required:
-                        - name
+                allOf:
+                  - $ref: "#/components/schemas/NamedAPIResourceList"
+                  - type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
           description: ""
+
   /api/v2/contest-type/{id}/:
     get:
       operationId: retrieveContestType
@@ -727,6 +697,7 @@ paths:
                 required:
                   - name
           description: ""
+
   /api/v2/contest-effect/:
     get:
       operationId: listContestEffects
@@ -739,25 +710,19 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                  previous:
-                    type: string
-                    nullable: true
-                  results:
-                    type: array
-                    items:
-                      properties:
-                        url:
-                          type: string
-                          readOnly: true
+                allOf:
+                  - $ref: "#/components/schemas/NamedAPIResourceList"
+                  - type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          properties:
+                            url:
+                              type: string
+                              readOnly: true
           description: ""
+
   /api/v2/contest-effect/{id}/:
     get:
       operationId: retrieveContestEffect
@@ -834,6 +799,7 @@ paths:
                   - appeal
                   - jam
           description: ""
+
   /api/v2/egg-group/:
     get:
       operationId: listEggGroups
@@ -846,30 +812,24 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                  previous:
-                    type: string
-                    nullable: true
-                  results:
-                    type: array
-                    items:
-                      properties:
-                        name:
-                          type: string
-                          maxLength: 100
-                        url:
-                          type: string
-                          readOnly: true
-                      required:
-                        - name
+                allOf:
+                  - $ref: "#/components/schemas/NamedAPIResourceList"
+                  - type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
           description: ""
+
   /api/v2/egg-group/{id}/:
     get:
       operationId: retrieveEggGroup
@@ -921,6 +881,7 @@ paths:
                 required:
                   - name
           description: ""
+
   /api/v2/encounter-method/:
     get:
       operationId: listEncounterMethods
@@ -933,30 +894,24 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                  previous:
-                    type: string
-                    nullable: true
-                  results:
-                    type: array
-                    items:
-                      properties:
-                        name:
-                          type: string
-                          maxLength: 100
-                        url:
-                          type: string
-                          readOnly: true
-                      required:
-                        - name
+                allOf:
+                  - $ref: "#/components/schemas/NamedAPIResourceList"
+                  - type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
           description: ""
+
   /api/v2/encounter-method/{id}/:
     get:
       operationId: retrieveEncounterMethod
@@ -1010,6 +965,7 @@ paths:
                 required:
                   - name
           description: ""
+
   /api/v2/encounter-condition/:
     get:
       operationId: listEncounterConditions
@@ -1022,30 +978,24 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                  previous:
-                    type: string
-                    nullable: true
-                  results:
-                    type: array
-                    items:
-                      properties:
-                        name:
-                          type: string
-                          maxLength: 100
-                        url:
-                          type: string
-                          readOnly: true
-                      required:
-                        - name
+                allOf:
+                  - $ref: "#/components/schemas/NamedAPIResourceList"
+                  - type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
           description: ""
+
   /api/v2/encounter-condition/{id}/:
     get:
       operationId: retrieveEncounterCondition
@@ -1107,6 +1057,7 @@ paths:
                 required:
                   - name
           description: ""
+
   /api/v2/encounter-condition-value/:
     get:
       operationId: listEncounterConditionValues
@@ -1119,30 +1070,24 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                  previous:
-                    type: string
-                    nullable: true
-                  results:
-                    type: array
-                    items:
-                      properties:
-                        name:
-                          type: string
-                          maxLength: 100
-                        url:
-                          type: string
-                          readOnly: true
-                      required:
-                        - name
+                allOf:
+                  - $ref: "#/components/schemas/NamedAPIResourceList"
+                  - type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
           description: ""
+
   /api/v2/encounter-condition-value/{id}/:
     get:
       operationId: retrieveEncounterConditionValue
@@ -1203,6 +1148,7 @@ paths:
                   - name
                   - condition
           description: ""
+
   /api/v2/evolution-chain/:
     get:
       operationId: listEvolutionChains
@@ -1215,25 +1161,19 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                  previous:
-                    type: string
-                    nullable: true
-                  results:
-                    type: array
-                    items:
-                      properties:
-                        url:
-                          type: string
-                          readOnly: true
+                allOf:
+                  - $ref: "#/components/schemas/NamedAPIResourceList"
+                  - type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          properties:
+                            url:
+                              type: string
+                              readOnly: true
           description: ""
+
   /api/v2/evolution-chain/{id}/:
     get:
       operationId: retrieveEvolutionChain
@@ -1271,6 +1211,7 @@ paths:
                 required:
                   - baby_trigger_item
           description: ""
+
   /api/v2/evolution-trigger/:
     get:
       operationId: listEvolutionTriggers
@@ -1283,30 +1224,24 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                  previous:
-                    type: string
-                    nullable: true
-                  results:
-                    type: array
-                    items:
-                      properties:
-                        name:
-                          type: string
-                          maxLength: 100
-                        url:
-                          type: string
-                          readOnly: true
-                      required:
-                        - name
+                allOf:
+                  - $ref: "#/components/schemas/NamedAPIResourceList"
+                  - type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
           description: ""
+
   /api/v2/evolution-trigger/{id}/:
     get:
       operationId: retrieveEvolutionTrigger
@@ -1358,6 +1293,7 @@ paths:
                 required:
                   - name
           description: ""
+
   /api/v2/generation/:
     get:
       operationId: listGenerations
@@ -1370,30 +1306,24 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                  previous:
-                    type: string
-                    nullable: true
-                  results:
-                    type: array
-                    items:
-                      properties:
-                        name:
-                          type: string
-                          maxLength: 100
-                        url:
-                          type: string
-                          readOnly: true
-                      required:
-                        - name
+                allOf:
+                  - $ref: "#/components/schemas/NamedAPIResourceList"
+                  - type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
           description: ""
+
   /api/v2/generation/{id}/:
     get:
       operationId: retrieveGeneration
@@ -1519,6 +1449,7 @@ paths:
                   - name
                   - main_region
           description: ""
+
   /api/v2/gender/:
     get:
       operationId: listGenders
@@ -1531,30 +1462,24 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                  previous:
-                    type: string
-                    nullable: true
-                  results:
-                    type: array
-                    items:
-                      properties:
-                        name:
-                          type: string
-                          maxLength: 100
-                        url:
-                          type: string
-                          readOnly: true
-                      required:
-                        - name
+                allOf:
+                  - $ref: "#/components/schemas/NamedAPIResourceList"
+                  - type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
           description: ""
+
   /api/v2/gender/{id}/:
     get:
       operationId: retrieveGender
@@ -1587,6 +1512,7 @@ paths:
                 required:
                   - name
           description: ""
+
   /api/v2/growth-rate/:
     get:
       operationId: listGrowthRates
@@ -1599,30 +1525,24 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                  previous:
-                    type: string
-                    nullable: true
-                  results:
-                    type: array
-                    items:
-                      properties:
-                        name:
-                          type: string
-                          maxLength: 100
-                        url:
-                          type: string
-                          readOnly: true
-                      required:
-                        - name
+                allOf:
+                  - $ref: "#/components/schemas/NamedAPIResourceList"
+                  - type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
           description: ""
+
   /api/v2/growth-rate/{id}/:
     get:
       operationId: retrieveGrowthRate
@@ -1703,6 +1623,7 @@ paths:
                   - name
                   - formula
           description: ""
+
   /api/v2/item/:
     get:
       operationId: listItems
@@ -1715,30 +1636,24 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                  previous:
-                    type: string
-                    nullable: true
-                  results:
-                    type: array
-                    items:
-                      properties:
-                        name:
-                          type: string
-                          maxLength: 100
-                        url:
-                          type: string
-                          readOnly: true
-                      required:
-                        - name
+                allOf:
+                  - $ref: "#/components/schemas/NamedAPIResourceList"
+                  - type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
           description: ""
+
   /api/v2/item/{id}/:
     get:
       operationId: retrieveItem
@@ -1918,9 +1833,10 @@ paths:
                   - fling_effect
                   - category
           description: ""
+
   /api/v2/item-category/:
     get:
-      operationId: listItemCategorys
+      operationId: listItemCategories
       description: ""
       parameters:
         - $ref: "#/components/parameters/offsetParam"
@@ -1930,30 +1846,24 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                  previous:
-                    type: string
-                    nullable: true
-                  results:
-                    type: array
-                    items:
-                      properties:
-                        name:
-                          type: string
-                          maxLength: 100
-                        url:
-                          type: string
-                          readOnly: true
-                      required:
-                        - name
+                allOf:
+                  - $ref: "#/components/schemas/NamedAPIResourceList"
+                  - type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
           description: ""
+
   /api/v2/item-category/{id}/:
     get:
       operationId: retrieveItemCategory
@@ -2027,6 +1937,7 @@ paths:
                   - name
                   - pocket
           description: ""
+
   /api/v2/item-attribute/:
     get:
       operationId: listItemAttributes
@@ -2039,30 +1950,24 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                  previous:
-                    type: string
-                    nullable: true
-                  results:
-                    type: array
-                    items:
-                      properties:
-                        name:
-                          type: string
-                          maxLength: 100
-                        url:
-                          type: string
-                          readOnly: true
-                      required:
-                        - name
+                allOf:
+                  - $ref: "#/components/schemas/NamedAPIResourceList"
+                  - type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
           description: ""
+
   /api/v2/item-attribute/{id}/:
     get:
       operationId: retrieveItemAttribute
@@ -2135,6 +2040,7 @@ paths:
                 required:
                   - name
           description: ""
+
   /api/v2/item-fling-effect/:
     get:
       operationId: listItemFlingEffects
@@ -2147,30 +2053,24 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                  previous:
-                    type: string
-                    nullable: true
-                  results:
-                    type: array
-                    items:
-                      properties:
-                        name:
-                          type: string
-                          maxLength: 100
-                        url:
-                          type: string
-                          readOnly: true
-                      required:
-                        - name
+                allOf:
+                  - $ref: "#/components/schemas/NamedAPIResourceList"
+                  - type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
           description: ""
+
   /api/v2/item-fling-effect/{id}/:
     get:
       operationId: retrieveItemFlingEffect
@@ -2232,6 +2132,7 @@ paths:
                 required:
                   - name
           description: ""
+
   /api/v2/item-pocket/:
     get:
       operationId: listItemPockets
@@ -2244,30 +2145,24 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                  previous:
-                    type: string
-                    nullable: true
-                  results:
-                    type: array
-                    items:
-                      properties:
-                        name:
-                          type: string
-                          maxLength: 100
-                        url:
-                          type: string
-                          readOnly: true
-                      required:
-                        - name
+                allOf:
+                  - $ref: "#/components/schemas/NamedAPIResourceList"
+                  - type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
           description: ""
+
   /api/v2/item-pocket/{id}/:
     get:
       operationId: retrieveItemPocket
@@ -2329,6 +2224,7 @@ paths:
                 required:
                   - name
           description: ""
+
   /api/v2/language/:
     get:
       operationId: listLanguages
@@ -2341,30 +2237,24 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                  previous:
-                    type: string
-                    nullable: true
-                  results:
-                    type: array
-                    items:
-                      properties:
-                        name:
-                          type: string
-                          maxLength: 100
-                        url:
-                          type: string
-                          readOnly: true
-                      required:
-                        - name
+                allOf:
+                  - $ref: "#/components/schemas/NamedAPIResourceList"
+                  - type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
           description: ""
+
   /api/v2/language/{id}/:
     get:
       operationId: retrieveLanguage
@@ -2423,6 +2313,7 @@ paths:
                   - iso639
                   - iso3166
           description: ""
+
   /api/v2/location/:
     get:
       operationId: listLocations
@@ -2435,30 +2326,24 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                  previous:
-                    type: string
-                    nullable: true
-                  results:
-                    type: array
-                    items:
-                      properties:
-                        name:
-                          type: string
-                          maxLength: 100
-                        url:
-                          type: string
-                          readOnly: true
-                      required:
-                        - name
+                allOf:
+                  - $ref: "#/components/schemas/NamedAPIResourceList"
+                  - type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
           description: ""
+
   /api/v2/location/{id}/:
     get:
       operationId: retrieveLocation
@@ -2555,6 +2440,7 @@ paths:
                   - name
                   - region
           description: ""
+
   /api/v2/location-area/:
     get:
       operationId: listLocationAreas
@@ -2567,30 +2453,24 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                  previous:
-                    type: string
-                    nullable: true
-                  results:
-                    type: array
-                    items:
-                      properties:
-                        name:
-                          type: string
-                          maxLength: 100
-                        url:
-                          type: string
-                          readOnly: true
-                      required:
-                        - name
+                allOf:
+                  - $ref: "#/components/schemas/NamedAPIResourceList"
+                  - type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
           description: ""
+
   /api/v2/location-area/{id}/:
     get:
       operationId: retrieveLocationArea
@@ -2662,6 +2542,7 @@ paths:
                   - game_index
                   - location
           description: ""
+
   /api/v2/machine/:
     get:
       operationId: listMachines
@@ -2674,25 +2555,19 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                  previous:
-                    type: string
-                    nullable: true
-                  results:
-                    type: array
-                    items:
-                      properties:
-                        url:
-                          type: string
-                          readOnly: true
+                allOf:
+                  - $ref: "#/components/schemas/NamedAPIResourceList"
+                  - type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          properties:
+                            url:
+                              type: string
+                              readOnly: true
           description: ""
+
   /api/v2/machine/{id}/:
     get:
       operationId: retrieveMachine
@@ -2751,6 +2626,7 @@ paths:
                   - version_group
                   - move
           description: ""
+
   /api/v2/move/:
     get:
       operationId: listMoves
@@ -2763,30 +2639,24 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                  previous:
-                    type: string
-                    nullable: true
-                  results:
-                    type: array
-                    items:
-                      properties:
-                        name:
-                          type: string
-                          maxLength: 100
-                        url:
-                          type: string
-                          readOnly: true
-                      required:
-                        - name
+                allOf:
+                  - $ref: "#/components/schemas/NamedAPIResourceList"
+                  - type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
           description: ""
+
   /api/v2/move/{id}/:
     get:
       operationId: retrieveMove
@@ -3110,6 +2980,7 @@ paths:
                   - target
                   - type
           description: ""
+
   /api/v2/move-ailment/:
     get:
       operationId: listMoveMetaAilments
@@ -3122,30 +2993,24 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                  previous:
-                    type: string
-                    nullable: true
-                  results:
-                    type: array
-                    items:
-                      properties:
-                        name:
-                          type: string
-                          maxLength: 100
-                        url:
-                          type: string
-                          readOnly: true
-                      required:
-                        - name
+                allOf:
+                  - $ref: "#/components/schemas/NamedAPIResourceList"
+                  - type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
           description: ""
+
   /api/v2/move-ailment/{id}/:
     get:
       operationId: retrieveMoveMetaAilment
@@ -3197,6 +3062,7 @@ paths:
                 required:
                   - name
           description: ""
+
   /api/v2/move-battle-style/:
     get:
       operationId: listMoveBattleStyles
@@ -3209,30 +3075,24 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                  previous:
-                    type: string
-                    nullable: true
-                  results:
-                    type: array
-                    items:
-                      properties:
-                        name:
-                          type: string
-                          maxLength: 100
-                        url:
-                          type: string
-                          readOnly: true
-                      required:
-                        - name
+                allOf:
+                  - $ref: "#/components/schemas/NamedAPIResourceList"
+                  - type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
           description: ""
+
   /api/v2/move-battle-style/{id}/:
     get:
       operationId: retrieveMoveBattleStyle
@@ -3281,9 +3141,10 @@ paths:
                 required:
                   - name
           description: ""
+
   /api/v2/move-category/:
     get:
-      operationId: listMoveMetaCategorys
+      operationId: listMoveMetaCategories
       description: ""
       parameters:
         - $ref: "#/components/parameters/offsetParam"
@@ -3293,30 +3154,24 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                  previous:
-                    type: string
-                    nullable: true
-                  results:
-                    type: array
-                    items:
-                      properties:
-                        name:
-                          type: string
-                          maxLength: 100
-                        url:
-                          type: string
-                          readOnly: true
-                      required:
-                        - name
+                allOf:
+                  - $ref: "#/components/schemas/NamedAPIResourceList"
+                  - type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
           description: ""
+
   /api/v2/move-category/{id}/:
     get:
       operationId: retrieveMoveMetaCategory
@@ -3367,6 +3222,7 @@ paths:
                 required:
                   - name
           description: ""
+
   /api/v2/move-damage-class/:
     get:
       operationId: listMoveDamageClass
@@ -3379,30 +3235,24 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                  previous:
-                    type: string
-                    nullable: true
-                  results:
-                    type: array
-                    items:
-                      properties:
-                        name:
-                          type: string
-                          maxLength: 100
-                        url:
-                          type: string
-                          readOnly: true
-                      required:
-                        - name
+                allOf:
+                  - $ref: "#/components/schemas/NamedAPIResourceList"
+                  - type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
           description: ""
+
   /api/v2/move-damage-class/{id}/:
     get:
       operationId: retrieveMoveDamageClass
@@ -3485,6 +3335,7 @@ paths:
                 required:
                   - name
           description: ""
+
   /api/v2/move-learn-method/:
     get:
       operationId: listMoveLearnMethods
@@ -3497,30 +3348,24 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                  previous:
-                    type: string
-                    nullable: true
-                  results:
-                    type: array
-                    items:
-                      properties:
-                        name:
-                          type: string
-                          maxLength: 100
-                        url:
-                          type: string
-                          readOnly: true
-                      required:
-                        - name
+                allOf:
+                  - $ref: "#/components/schemas/NamedAPIResourceList"
+                  - type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
           description: ""
+
   /api/v2/move-learn-method/{id}/:
     get:
       operationId: retrieveMoveLearnMethod
@@ -3593,6 +3438,7 @@ paths:
                 required:
                   - name
           description: ""
+
   /api/v2/move-target/:
     get:
       operationId: listMoveTargets
@@ -3605,30 +3451,24 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                  previous:
-                    type: string
-                    nullable: true
-                  results:
-                    type: array
-                    items:
-                      properties:
-                        name:
-                          type: string
-                          maxLength: 100
-                        url:
-                          type: string
-                          readOnly: true
-                      required:
-                        - name
+                allOf:
+                  - $ref: "#/components/schemas/NamedAPIResourceList"
+                  - type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
           description: ""
+
   /api/v2/move-target/{id}/:
     get:
       operationId: retrieveMoveTarget
@@ -3711,6 +3551,7 @@ paths:
                 required:
                   - name
           description: ""
+
   /api/v2/nature/:
     get:
       operationId: listNatures
@@ -3723,30 +3564,24 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                  previous:
-                    type: string
-                    nullable: true
-                  results:
-                    type: array
-                    items:
-                      properties:
-                        name:
-                          type: string
-                          maxLength: 100
-                        url:
-                          type: string
-                          readOnly: true
-                      required:
-                        - name
+                allOf:
+                  - $ref: "#/components/schemas/NamedAPIResourceList"
+                  - type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
           description: ""
+
   /api/v2/nature/{id}/:
     get:
       operationId: retrieveNature
@@ -3887,6 +3722,7 @@ paths:
                   - likes_flavor
                   - hates_flavor
           description: ""
+
   /api/v2/pal-park-area/:
     get:
       operationId: listPalParkAreas
@@ -3899,30 +3735,24 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                  previous:
-                    type: string
-                    nullable: true
-                  results:
-                    type: array
-                    items:
-                      properties:
-                        name:
-                          type: string
-                          maxLength: 100
-                        url:
-                          type: string
-                          readOnly: true
-                      required:
-                        - name
+                allOf:
+                  - $ref: "#/components/schemas/NamedAPIResourceList"
+                  - type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
           description: ""
+
   /api/v2/pal-park-area/{id}/:
     get:
       operationId: retrievePalParkArea
@@ -3974,6 +3804,7 @@ paths:
                 required:
                   - name
           description: ""
+
   /api/v2/pokedex/:
     get:
       operationId: listPokedexs
@@ -3986,30 +3817,24 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                  previous:
-                    type: string
-                    nullable: true
-                  results:
-                    type: array
-                    items:
-                      properties:
-                        name:
-                          type: string
-                          maxLength: 100
-                        url:
-                          type: string
-                          readOnly: true
-                      required:
-                        - name
+                allOf:
+                  - $ref: "#/components/schemas/NamedAPIResourceList"
+                  - type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
           description: ""
+
   /api/v2/pokedex/{id}/:
     get:
       operationId: retrievePokedex
@@ -4099,6 +3924,7 @@ paths:
                   - name
                   - region
           description: ""
+
   /api/v2/pokemon/:
     get:
       operationId: listPokemons
@@ -4111,30 +3937,24 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                  previous:
-                    type: string
-                    nullable: true
-                  results:
-                    type: array
-                    items:
-                      properties:
-                        name:
-                          type: string
-                          maxLength: 100
-                        url:
-                          type: string
-                          readOnly: true
-                      required:
-                        - name
+                allOf:
+                  - $ref: "#/components/schemas/NamedAPIResourceList"
+                  - type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
           description: ""
+
   /api/v2/pokemon/{id}/:
     get:
       operationId: retrievePokemon
@@ -4277,6 +4097,7 @@ paths:
                   - weight
                   - species
           description: ""
+
   /api/v2/pokemon-color/:
     get:
       operationId: listPokemonColors
@@ -4289,30 +4110,24 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                  previous:
-                    type: string
-                    nullable: true
-                  results:
-                    type: array
-                    items:
-                      properties:
-                        name:
-                          type: string
-                          maxLength: 100
-                        url:
-                          type: string
-                          readOnly: true
-                      required:
-                        - name
+                allOf:
+                  - $ref: "#/components/schemas/NamedAPIResourceList"
+                  - type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
           description: ""
+
   /api/v2/pokemon-color/{id}/:
     get:
       operationId: retrievePokemonColor
@@ -4374,6 +4189,7 @@ paths:
                 required:
                   - name
           description: ""
+
   /api/v2/pokemon-form/:
     get:
       operationId: listPokemonForms
@@ -4386,30 +4202,24 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                  previous:
-                    type: string
-                    nullable: true
-                  results:
-                    type: array
-                    items:
-                      properties:
-                        name:
-                          type: string
-                          maxLength: 100
-                        url:
-                          type: string
-                          readOnly: true
-                      required:
-                        - name
+                allOf:
+                  - $ref: "#/components/schemas/NamedAPIResourceList"
+                  - type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
           description: ""
+
   /api/v2/pokemon-form/{id}/:
     get:
       operationId: retrievePokemonForm
@@ -4489,6 +4299,7 @@ paths:
                   - pokemon
                   - version_group
           description: ""
+
   /api/v2/pokemon-habitat/:
     get:
       operationId: listPokemonHabitats
@@ -4501,30 +4312,24 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                  previous:
-                    type: string
-                    nullable: true
-                  results:
-                    type: array
-                    items:
-                      properties:
-                        name:
-                          type: string
-                          maxLength: 100
-                        url:
-                          type: string
-                          readOnly: true
-                      required:
-                        - name
+                allOf:
+                  - $ref: "#/components/schemas/NamedAPIResourceList"
+                  - type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
           description: ""
+
   /api/v2/pokemon-habitat/{id}/:
     get:
       operationId: retrievePokemonHabitat
@@ -4586,6 +4391,7 @@ paths:
                 required:
                   - name
           description: ""
+
   /api/v2/pokemon-shape/:
     get:
       operationId: listPokemonShapes
@@ -4598,30 +4404,24 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                  previous:
-                    type: string
-                    nullable: true
-                  results:
-                    type: array
-                    items:
-                      properties:
-                        name:
-                          type: string
-                          maxLength: 100
-                        url:
-                          type: string
-                          readOnly: true
-                      required:
-                        - name
+                allOf:
+                  - $ref: "#/components/schemas/NamedAPIResourceList"
+                  - type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
           description: ""
+
   /api/v2/pokemon-shape/{id}/:
     get:
       operationId: retrievePokemonShape
@@ -4667,6 +4467,7 @@ paths:
                 required:
                   - name
           description: ""
+
   /api/v2/pokemon-species/:
     get:
       operationId: listPokemonSpecies
@@ -4679,30 +4480,24 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                  previous:
-                    type: string
-                    nullable: true
-                  results:
-                    type: array
-                    items:
-                      properties:
-                        name:
-                          type: string
-                          maxLength: 100
-                        url:
-                          type: string
-                          readOnly: true
-                      required:
-                        - name
+                allOf:
+                  - $ref: "#/components/schemas/NamedAPIResourceList"
+                  - type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
           description: ""
+
   /api/v2/pokemon-species/{id}/:
     get:
       operationId: retrievePokemonSpecies
@@ -4929,6 +4724,7 @@ paths:
                   - habitat
                   - generation
           description: ""
+
   /api/v2/pokeathlon-stat/:
     get:
       operationId: listPokeathlonStats
@@ -4941,30 +4737,24 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                  previous:
-                    type: string
-                    nullable: true
-                  results:
-                    type: array
-                    items:
-                      properties:
-                        name:
-                          type: string
-                          maxLength: 100
-                        url:
-                          type: string
-                          readOnly: true
-                      required:
-                        - name
+                allOf:
+                  - $ref: "#/components/schemas/NamedAPIResourceList"
+                  - type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
           description: ""
+
   /api/v2/pokeathlon-stat/{id}/:
     get:
       operationId: retrievePokeathlonStat
@@ -5016,6 +4806,7 @@ paths:
                 required:
                   - name
           description: ""
+
   /api/v2/region/:
     get:
       operationId: listRegions
@@ -5028,30 +4819,24 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                  previous:
-                    type: string
-                    nullable: true
-                  results:
-                    type: array
-                    items:
-                      properties:
-                        name:
-                          type: string
-                          maxLength: 100
-                        url:
-                          type: string
-                          readOnly: true
-                      required:
-                        - name
+                allOf:
+                  - $ref: "#/components/schemas/NamedAPIResourceList"
+                  - type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
           description: ""
+
   /api/v2/region/{id}/:
     get:
       operationId: retrieveRegion
@@ -5141,6 +4926,7 @@ paths:
                 required:
                   - name
           description: ""
+
   /api/v2/stat/:
     get:
       operationId: listStats
@@ -5153,30 +4939,24 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                  previous:
-                    type: string
-                    nullable: true
-                  results:
-                    type: array
-                    items:
-                      properties:
-                        name:
-                          type: string
-                          maxLength: 100
-                        url:
-                          type: string
-                          readOnly: true
-                      required:
-                        - name
+                allOf:
+                  - $ref: "#/components/schemas/NamedAPIResourceList"
+                  - type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
           description: ""
+
   /api/v2/stat/{id}/:
     get:
       operationId: retrieveStat
@@ -5258,6 +5038,7 @@ paths:
                   - game_index
                   - move_damage_class
           description: ""
+
   /api/v2/super-contest-effect/:
     get:
       operationId: listSuperContestEffects
@@ -5270,25 +5051,19 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                  previous:
-                    type: string
-                    nullable: true
-                  results:
-                    type: array
-                    items:
-                      properties:
-                        url:
-                          type: string
-                          readOnly: true
+                allOf:
+                  - $ref: "#/components/schemas/NamedAPIResourceList"
+                  - type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          properties:
+                            url:
+                              type: string
+                              readOnly: true
           description: ""
+
   /api/v2/super-contest-effect/{id}/:
     get:
       operationId: retrieveSuperContestEffect
@@ -5351,6 +5126,7 @@ paths:
                 required:
                   - appeal
           description: ""
+
   /api/v2/type/:
     get:
       operationId: listTypes
@@ -5363,30 +5139,24 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                  previous:
-                    type: string
-                    nullable: true
-                  results:
-                    type: array
-                    items:
-                      properties:
-                        name:
-                          type: string
-                          maxLength: 100
-                        url:
-                          type: string
-                          readOnly: true
-                      required:
-                        - name
+                allOf:
+                  - $ref: "#/components/schemas/NamedAPIResourceList"
+                  - type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
           description: ""
+
   /api/v2/type/{id}/:
     get:
       operationId: retrieveType
@@ -5501,6 +5271,7 @@ paths:
                   - generation
                   - move_damage_class
           description: ""
+
   /api/v2/version/:
     get:
       operationId: listVersions
@@ -5513,30 +5284,24 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                  previous:
-                    type: string
-                    nullable: true
-                  results:
-                    type: array
-                    items:
-                      properties:
-                        name:
-                          type: string
-                          maxLength: 100
-                        url:
-                          type: string
-                          readOnly: true
-                      required:
-                        - name
+                allOf:
+                  - $ref: "#/components/schemas/NamedAPIResourceList"
+                  - type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
           description: ""
+
   /api/v2/version/{id}/:
     get:
       operationId: retrieveVersion
@@ -5597,6 +5362,7 @@ paths:
                   - name
                   - version_group
           description: ""
+
   /api/v2/version-group/:
     get:
       operationId: listVersionGroups
@@ -5609,30 +5375,24 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                  previous:
-                    type: string
-                    nullable: true
-                  results:
-                    type: array
-                    items:
-                      properties:
-                        name:
-                          type: string
-                          maxLength: 100
-                        url:
-                          type: string
-                          readOnly: true
-                      required:
-                        - name
+                allOf:
+                  - $ref: "#/components/schemas/NamedAPIResourceList"
+                  - type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          properties:
+                            name:
+                              type: string
+                              maxLength: 100
+                            url:
+                              type: string
+                              readOnly: true
+                          required:
+                            - name
           description: ""
+
   /api/v2/version-group/{id}/:
     get:
       operationId: retrieveVersionGroup
@@ -5698,6 +5458,7 @@ paths:
                   - name
                   - generation
           description: ""
+
   /api/v2/pokemon/{pokemon_id}/encounters:
     get:
       operationId: listPokemonEncounters
@@ -5734,3 +5495,17 @@ components:
         description: The initial index from which to return the results.
         title: Offset
         type: integer
+
+  schemas:
+    NamedAPIResourceList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+        previous:
+          type: string
+          nullable: true
