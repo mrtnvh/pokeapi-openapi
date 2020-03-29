@@ -81,88 +81,11 @@ paths:
             type: string
       responses:
         "200":
+          description: ""
           content:
             application/json:
               schema:
-                properties:
-                  id:
-                    type: integer
-                    readOnly: true
-                  name:
-                    type: string
-                    maxLength: 100
-                  growth_time:
-                    type: integer
-                    maximum: 2147483647
-                    minimum: -2147483648
-                  max_harvest:
-                    type: integer
-                    maximum: 2147483647
-                    minimum: -2147483648
-                  natural_gift_power:
-                    type: integer
-                    maximum: 2147483647
-                    minimum: -2147483648
-                  size:
-                    type: integer
-                    maximum: 2147483647
-                    minimum: -2147483648
-                  smoothness:
-                    type: integer
-                    maximum: 2147483647
-                    minimum: -2147483648
-                  soil_dryness:
-                    type: integer
-                    maximum: 2147483647
-                    minimum: -2147483648
-                  firmness:
-                    properties:
-                      name:
-                        type: string
-                        maxLength: 100
-                      url:
-                        type: string
-                        readOnly: true
-                    required:
-                      - name
-                    type: object
-                  flavors:
-                    type: string
-                    readOnly: true
-                  item:
-                    properties:
-                      name:
-                        type: string
-                        maxLength: 100
-                      url:
-                        type: string
-                        readOnly: true
-                    required:
-                      - name
-                    type: object
-                  natural_gift_type:
-                    properties:
-                      name:
-                        type: string
-                        maxLength: 100
-                      url:
-                        type: string
-                        readOnly: true
-                    required:
-                      - name
-                    type: object
-                required:
-                  - name
-                  - growth_time
-                  - max_harvest
-                  - natural_gift_power
-                  - size
-                  - smoothness
-                  - soil_dryness
-                  - firmness
-                  - item
-                  - natural_gift_type
-          description: ""
+                $ref: "#/components/schemas/Berry"
 
   /api/v2/berry-firmness/:
     get:
@@ -173,6 +96,7 @@ paths:
         - $ref: "#/components/parameters/limitParam"
       responses:
         "200":
+          description: ""
           content:
             application/json:
               schema:
@@ -181,18 +105,7 @@ paths:
                   - type: object
                     properties:
                       results:
-                        type: array
-                        items:
-                          properties:
-                            name:
-                              type: string
-                              maxLength: 100
-                            url:
-                              type: string
-                              readOnly: true
-                          required:
-                            - name
-          description: ""
+                        $ref: "#/components/schemas/BerryFirmnessList"
 
   /api/v2/berry-firmness/{id}/:
     get:
@@ -5507,6 +5420,99 @@ components:
         - generation
 
     BerryList:
+      type: array
+      items:
+        properties:
+          name:
+            type: string
+            maxLength: 100
+          url:
+            type: string
+            readOnly: true
+        required:
+          - name
+
+    Berry:
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+        growth_time:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+        max_harvest:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+        natural_gift_power:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+        size:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+        smoothness:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+        soil_dryness:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+        firmness:
+          properties:
+            name:
+              type: string
+              maxLength: 100
+            url:
+              type: string
+              readOnly: true
+          required:
+            - name
+          type: object
+        flavors:
+          type: string
+          readOnly: true
+        item:
+          properties:
+            name:
+              type: string
+              maxLength: 100
+            url:
+              type: string
+              readOnly: true
+          required:
+            - name
+          type: object
+        natural_gift_type:
+          properties:
+            name:
+              type: string
+              maxLength: 100
+            url:
+              type: string
+              readOnly: true
+          required:
+            - name
+          type: object
+      required:
+        - name
+        - growth_time
+        - max_harvest
+        - natural_gift_power
+        - size
+        - smoothness
+        - soil_dryness
+        - firmness
+        - item
+        - natural_gift_type
+
+    BerryFirmnessList:
       type: array
       items:
         properties:
