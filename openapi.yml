@@ -3646,17 +3646,8 @@ paths:
                   - type: object
                     properties:
                       results:
-                        type: array
-                        items:
-                          properties:
-                            name:
-                              type: string
-                              maxLength: 100
-                            url:
-                              type: string
-                              readOnly: true
-                          required:
-                            - name
+                        $ref: "#/components/schemas/PokemonList"
+
           description: ""
 
   /api/v2/pokemon/{id}/:
@@ -3675,131 +3666,7 @@ paths:
           content:
             application/json:
               schema:
-                properties:
-                  id:
-                    type: integer
-                    readOnly: true
-                  name:
-                    type: string
-                    maxLength: 100
-                  base_experience:
-                    type: integer
-                    maximum: 2147483647
-                    minimum: -2147483648
-                  height:
-                    type: integer
-                    maximum: 2147483647
-                    minimum: -2147483648
-                  is_default:
-                    type: boolean
-                  order:
-                    type: integer
-                    maximum: 2147483647
-                    minimum: -2147483648
-                    nullable: true
-                  weight:
-                    type: integer
-                    maximum: 2147483647
-                    minimum: -2147483648
-                  abilities:
-                    type: string
-                    readOnly: true
-                  forms:
-                    type: array
-                    items:
-                      properties:
-                        name:
-                          type: string
-                          maxLength: 100
-                        url:
-                          type: string
-                          readOnly: true
-                      required:
-                        - name
-                    readOnly: true
-                  game_indices:
-                    type: array
-                    items:
-                      properties:
-                        game_index:
-                          type: integer
-                          maximum: 2147483647
-                          minimum: -2147483648
-                        version:
-                          properties:
-                            name:
-                              type: string
-                              maxLength: 100
-                            url:
-                              type: string
-                              readOnly: true
-                          required:
-                            - name
-                          type: object
-                      required:
-                        - game_index
-                        - version
-                    readOnly: true
-                  held_items:
-                    type: string
-                    readOnly: true
-                  location_area_encounters:
-                    type: string
-                    readOnly: true
-                  moves:
-                    type: string
-                    readOnly: true
-                  species:
-                    properties:
-                      name:
-                        type: string
-                        maxLength: 100
-                      url:
-                        type: string
-                        readOnly: true
-                    required:
-                      - name
-                    type: object
-                  sprites:
-                    type: string
-                    readOnly: true
-                  stats:
-                    type: array
-                    items:
-                      properties:
-                        base_stat:
-                          type: integer
-                          maximum: 2147483647
-                          minimum: -2147483648
-                        effort:
-                          type: integer
-                          maximum: 2147483647
-                          minimum: -2147483648
-                        stat:
-                          properties:
-                            name:
-                              type: string
-                              maxLength: 100
-                            url:
-                              type: string
-                              readOnly: true
-                          required:
-                            - name
-                          type: object
-                      required:
-                        - base_stat
-                        - effort
-                        - stat
-                    readOnly: true
-                  types:
-                    type: string
-                    readOnly: true
-                required:
-                  - name
-                  - base_experience
-                  - height
-                  - weight
-                  - species
+                $ref: "#/components/schemas/Pokemon"
           description: ""
 
   /api/v2/pokemon-color/:
@@ -5527,3 +5394,143 @@ components:
           readOnly: true
       required:
         - name
+
+    PokemonList:
+      type: array
+      items:
+        properties:
+          name:
+            type: string
+            maxLength: 100
+          url:
+            type: string
+            readOnly: true
+        required:
+          - name
+
+    Pokemon:
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+        base_experience:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+        height:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+        is_default:
+          type: boolean
+        order:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+        weight:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+        abilities:
+          type: string
+          readOnly: true
+        forms:
+          type: array
+          items:
+            properties:
+              name:
+                type: string
+                maxLength: 100
+              url:
+                type: string
+                readOnly: true
+            required:
+              - name
+          readOnly: true
+        game_indices:
+          type: array
+          items:
+            properties:
+              game_index:
+                type: integer
+                maximum: 2147483647
+                minimum: -2147483648
+              version:
+                properties:
+                  name:
+                    type: string
+                    maxLength: 100
+                  url:
+                    type: string
+                    readOnly: true
+                required:
+                  - name
+                type: object
+            required:
+              - game_index
+              - version
+          readOnly: true
+        held_items:
+          type: string
+          readOnly: true
+        location_area_encounters:
+          type: string
+          readOnly: true
+        moves:
+          type: string
+          readOnly: true
+        species:
+          properties:
+            name:
+              type: string
+              maxLength: 100
+            url:
+              type: string
+              readOnly: true
+          required:
+            - name
+          type: object
+        sprites:
+          type: string
+          readOnly: true
+        stats:
+          type: array
+          items:
+            properties:
+              base_stat:
+                type: integer
+                maximum: 2147483647
+                minimum: -2147483648
+              effort:
+                type: integer
+                maximum: 2147483647
+                minimum: -2147483648
+              stat:
+                properties:
+                  name:
+                    type: string
+                    maxLength: 100
+                  url:
+                    type: string
+                    readOnly: true
+                required:
+                  - name
+                type: object
+            required:
+              - base_stat
+              - effort
+              - stat
+          readOnly: true
+        types:
+          type: string
+          readOnly: true
+      required:
+        - name
+        - base_experience
+        - height
+        - weight
+        - species
