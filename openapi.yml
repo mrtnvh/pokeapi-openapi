@@ -18,26 +18,13 @@ paths:
         - $ref: "#/components/parameters/limitParam"
       responses:
         "200":
+          description: "List abilities"
           content:
             application/json:
               schema:
                 allOf:
                   - $ref: "#/components/schemas/NamedAPIResourceList"
-                  - type: object
-                    properties:
-                      results:
-                        type: array
-                        items:
-                          properties:
-                            name:
-                              type: string
-                              maxLength: 100
-                            url:
-                              type: string
-                              readOnly: true
-                          required:
-                            - name
-          description: ""
+                  - $ref: "#/components/schemas/AbilityList"
 
   /api/v2/ability/{id}/:
     get:
@@ -5509,3 +5496,20 @@ components:
         previous:
           type: string
           nullable: true
+
+    AbilityList:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            properties:
+              name:
+                type: string
+                maxLength: 100
+              url:
+                type: string
+                readOnly: true
+            required:
+              - name
+
