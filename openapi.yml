@@ -120,54 +120,11 @@ paths:
             type: string
       responses:
         "200":
+          description: ""
           content:
             application/json:
               schema:
-                properties:
-                  id:
-                    type: integer
-                    readOnly: true
-                  name:
-                    type: string
-                    maxLength: 100
-                  berries:
-                    type: array
-                    items:
-                      properties:
-                        name:
-                          type: string
-                          maxLength: 100
-                        url:
-                          type: string
-                          readOnly: true
-                      required:
-                        - name
-                    readOnly: true
-                  names:
-                    type: array
-                    items:
-                      properties:
-                        name:
-                          type: string
-                          maxLength: 100
-                        language:
-                          properties:
-                            name:
-                              type: string
-                              maxLength: 100
-                            url:
-                              type: string
-                              readOnly: true
-                          required:
-                            - name
-                          type: object
-                      required:
-                        - name
-                        - language
-                    readOnly: true
-                required:
-                  - name
-          description: ""
+                $ref: "#/components/schemas/BerryFirmness"
 
   /api/v2/berry-flavor/:
     get:
@@ -5524,3 +5481,49 @@ components:
             readOnly: true
         required:
           - name
+
+    BerryFirmness:
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+        berries:
+          type: array
+          items:
+            properties:
+              name:
+                type: string
+                maxLength: 100
+              url:
+                type: string
+                readOnly: true
+            required:
+              - name
+          readOnly: true
+        names:
+          type: array
+          items:
+            properties:
+              name:
+                type: string
+                maxLength: 100
+              language:
+                properties:
+                  name:
+                    type: string
+                    maxLength: 100
+                  url:
+                    type: string
+                    readOnly: true
+                required:
+                  - name
+                type: object
+            required:
+              - name
+              - language
+          readOnly: true
+      required:
+        - name
