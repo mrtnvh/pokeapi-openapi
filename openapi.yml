@@ -3643,11 +3643,7 @@ paths:
               schema:
                 allOf:
                   - $ref: "#/components/schemas/NamedAPIResourceList"
-                  - type: object
-                    properties:
-                      results:
-                        $ref: "#/components/schemas/PokemonList"
-
+                  - $ref: "#/components/schemas/PokemonListResult"
           description: ""
 
   /api/v2/pokemon/{id}/:
@@ -5394,6 +5390,11 @@ components:
           readOnly: true
       required:
         - name
+
+    PokemonListResult:
+      properties:
+        results:
+          $ref: "#/components/schemas/PokemonList"
 
     PokemonList:
       type: array
